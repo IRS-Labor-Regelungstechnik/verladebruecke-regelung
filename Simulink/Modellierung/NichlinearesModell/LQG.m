@@ -17,16 +17,16 @@ b4 = -2*pi*r1/(6*T1);
 A=[0 1 0 0;
    0 a22 0 0;
    0 0 0 1;
-   0 a42 a43 0]
-B=[0 b2 0 b4]'
+   0 a42 a43 0];
+B=[0 b2 0 b4]';
 
 %% define the objective function
 disp('objective function')
 Q=[10 0 0 0;
     0 10 0 0;
     0  0 100 0;
-    0  0 0 100]
-R=0.01
+    0  0 0 100];
+R=0.05;
 
 %% calculation of the solution of the riccati equation and the controller
 %% gain
@@ -67,7 +67,7 @@ plot(tout,x(:,4))
 ylabel('x_{4}=phi^°')
 
 subplot(5,1,5)
-%plot(tout,u)
+plot(tout(1:length(u)),u)
 ylabel('u=n_{soll}')
 xlabel('t [s]')
 
