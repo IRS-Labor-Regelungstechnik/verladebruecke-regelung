@@ -1,7 +1,7 @@
 classdef Motorsteuerung2 < matlab.System
-    % Motorsteuerung2 Add summary here
+    % Motorsteuerung2 Skript zum automatisierten Teaching der Absolutwertdrehgeber
     %
-    % Laufkatze bzw. Greifer muss sich ungefähr in der Mitte befinden
+    % Laufkatze bzw. Greifer muss sich zum Start ungefähr in der Mitte befinden
 
     % Public, tunable properties
     properties
@@ -52,9 +52,6 @@ classdef Motorsteuerung2 < matlab.System
         function [n_Motor,Abswertgeber_Set] = stepImpl(obj,Schritt1,Resolver_Int,Clock)
             % Implement algorithm. Calculate y as a function of input u and
             % discrete states.
-            
-            %n_Motor = 0;
-            %Abswertgeber_Set = 0;
             
             if(Schritt1 == 0) && (Clock > 6) && (obj.Schritt2 == 0) % starte Motor
                 obj.prop_n_Motor = -0.05;
