@@ -60,7 +60,7 @@ classdef Motorsteuerung2 < matlab.System
             
             % hier eventuell kritisch falls nicht sofort eine Veränderung
             % des Resolverwinkels eintritt -> 6.5 -> halbe sekunde Zeit
-            if(Resolver_Int < 0.1) && (Clock > 6.5) && (obj.Schritt2 == 1) && (obj.Schritt3 == 0) % Ende erreicht
+            if(abs(Resolver_Int) < 0.1) && (Clock > 6.5) && (obj.Schritt2 == 1) && (obj.Schritt3 == 0) % Ende erreicht
                 
                 obj.prop_n_Motor = 0; % stoppe Motor
                 
@@ -85,7 +85,7 @@ classdef Motorsteuerung2 < matlab.System
             end
             
             % 4.5: mind. 0.5s nach Start der Motoren
-            if(Resolver_Int > -0.1) && ((Clock - obj.time1) >= 4.5) && (obj.Schritt4 == 1) && (obj.Schritt5 == 0)
+            if(abs(Resolver_Int) < 0.1) && ((Clock - obj.time1) >= 4.5) && (obj.Schritt4 == 1) && (obj.Schritt5 == 0)
                 
                 obj.prop_n_Motor = 0; % stoppe Motor
                 
