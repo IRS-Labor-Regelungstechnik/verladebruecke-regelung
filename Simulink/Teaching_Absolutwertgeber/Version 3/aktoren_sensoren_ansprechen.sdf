@@ -1,0 +1,15 @@
+[System]
+Version=2.2
+SystemType=SingleProcessorSystem
+DAQService=DsDAQ
+DsDAQBackground=1
+Status=Start
+File=aktoren_sensoren_ansprechen.rta
+RTP=Master
+
+[Master]
+Type=DS1202
+State=Enabled
+ServiceID=1
+TraceFile=aktoren_sensoren_ansprechen.trc
+ID=17E990D0-BACB-4257-80F4-E4022B1FC91F
