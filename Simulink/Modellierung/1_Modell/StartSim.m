@@ -44,7 +44,6 @@ assignin('base', 'phi_0',phi_0)
 %% Linearized System
 
 L=0.2;
-set_param(linearesModell,L,0.2)
 
 %Laufkatze
 a22 = -1/T1;
@@ -70,8 +69,8 @@ D2=[0 0]';
 
 %% run the simulink model
 
-%sim nichtlinearesModell
-sim linearesModell
+sim nichtlinearesModell
+%sim linearesModell
 
 %% plot
 
