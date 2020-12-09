@@ -3,7 +3,7 @@ function [J] = guetemass(x, a_P, b_P, R_P, P, system)
 J = 0;
 
 % Summe über alle Modelle
-for i = size(system.theta,2)
+for i = 1:size(system.theta,2)
     
     sys = system;
     sys.L = system.theta(i);
