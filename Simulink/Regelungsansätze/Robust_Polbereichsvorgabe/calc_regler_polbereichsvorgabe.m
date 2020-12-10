@@ -4,7 +4,7 @@
 %% Parameter
 
 % tatsächliches L
-system.currL = 1.5;
+system.currL = 1.0;
 
 % mechanisches System:
 system.R = 0.046; % Radius Rad
@@ -54,7 +54,9 @@ x0(6) = K_0(2,2);
 x0(7) = K_0(2,3);
 x0(8) = K_0(2,4);
 
-options = optimoptions(@fminunc,'Display','iter','Algorithm','quasi-newton', 'OptimalityTolerance', 1e-9, 'StepTolerance', 1e-9, 'MaxFunctionEvaluations', 10000, 'MaxIterations', 10000);
+options = optimoptions(@fminunc,'Display','iter','Algorithm','quasi-newton',...
+    'OptimalityTolerance', 1e-9, 'StepTolerance', 1e-9,...
+    'MaxFunctionEvaluations', 10000, 'MaxIterations', 10000);
 [x, fval] = fminunc(@(x)guetemass(x, a_P, b_P, R_P, P, system), x0, options);
 
 %% Ergebnisse
