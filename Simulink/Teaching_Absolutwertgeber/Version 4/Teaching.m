@@ -1,4 +1,4 @@
-classdef Teaching < matlab.System
+classdef Teaching < matlab.System & matlab.system.mixin.Propagates
     % Teaching Skript zum automatisierten Teaching der Absolutwertdrehgeber
     %
     % Laufkatze bzw. Greifer muss sich zum Start ungef?hr in der Mitte befinden
@@ -53,21 +53,18 @@ classdef Teaching < matlab.System
             obj.time_set2 = 0;
             obj.time_set3 = 0;
             
-            obj.Schritt2 = 0;
-            obj.Schritt3 = 0;
-            obj.Schritt4 = 0;
-            obj.Schritt5 = 0;
+            obj.Schritt2 = false;
+            obj.Schritt3 = false;
+            obj.Schritt4 = false;
+            obj.Schritt5 = false;
             
             obj.prop_n_Motor = 0;
             obj.prop_Abswertgeber_Set = 0;
         end
         
-        function [n_Motor, AWG_Set, Finished] = stepImpl(obj, Start, Clock)
-            % Implement algorithm. Calculate y as a function of input u and
-            % discrete states.
-            
+        function [Motor_DAC, AWG_Set, Finished] = stepImpl(obj, Start, Clock)
             if ~Start && obj.Schritt5
-                obj.Schritt5 = 0;
+                obj.Schritt5 = false;
             end
             
             % Teach Vorgang
@@ -78,10 +75,10 @@ classdef Teaching < matlab.System
                     obj.time0 = Clock;
                 end
                 
-                obj.Schritt2 = 1; % Einstellungen fuer Schritt 2 abgeschlossen
+                obj.Schritt2 = true; % Einstellungen fuer Schritt 2 abgeschlossen
             end
             
-            if((Clock - obj.time0) >= obj.dauer_start_zu_endpunkt) && (obj.Schritt2 == 1) && (obj.Schritt3 == 0) % Ende erreicht
+            if((Clock - obj.time0) >= obj.dauer_start_zu_endpunkt) && obj.Schritt2 && ~obj.Schritt3 % Ende erreicht
                 
                 obj.prop_n_Motor = 0; % stoppe Motor
                 
@@ -93,24 +90,23 @@ classdef Teaching < matlab.System
                 
                 if((Clock - obj.time1) >= 1.5) %%% von 1 auf 1.5 ge?ndert
                     obj.prop_Abswertgeber_Set = 0; % setze Setausgang nach 1s wieder auf 0
-                    obj.Schritt3 = 1;
+                    obj.Schritt3 = true;
                 end
                 
             end
             
-            % In Schritt 3 erst 1s HIGH dann 3s warten -> 4s
-            if((Clock - obj.time1) >= 5) && (obj.Schritt3 == 1) && (obj.Schritt4 == 0) %%% von 4 auf 5 ge?ndert
+            
+            if((Clock - obj.time1) >= 5) && obj.Schritt3 && ~obj.Schritt4 %%% von 4 auf 5 geaendert
                 obj.prop_n_Motor = obj.motor_drehzahl;
                 if(obj.time_set3 == 0)
                     obj.time_set3 = 1;
                     obj.time3 = Clock;
                 end
                 
-                obj.Schritt4 = 1; % Einstellungen fuer Schritt 4 abgeschlossen
+                obj.Schritt4 = true; % Einstellungen fuer Schritt 4 abgeschlossen
             end
             
-            if((Clock - obj.time3) >= obj.dauer_start_zu_endpunkt) && (obj.Schritt4 == 1) && (obj.Schritt5 == 0)
-                
+            if ((Clock - obj.time3) >= obj.dauer_start_zu_endpunkt) && obj.Schritt4 && ~obj.Schritt5
                 obj.prop_n_Motor = 0; % stoppe Motor
                 
                 obj.prop_Abswertgeber_Set = 1;
@@ -122,14 +118,14 @@ classdef Teaching < matlab.System
                 if((Clock - obj.time2) >= 2) %%% von 1 auf 2 geaendert
                     obj.prop_Abswertgeber_Set = 0;
                     
-                    obj.Schritt5 = 1; % Schritt 5 abgeschlossen, Teaching abgeschlossen
+                    obj.Schritt5 = true; % Schritt 5 abgeschlossen, Teaching abgeschlossen
                 end
                 
             end
             
             Finished = obj.Schritt5;
             AWG_Set = obj.prop_Abswertgeber_Set;
-            n_Motor = obj.prop_n_Motor;
+            Motor_DAC = obj.prop_n_Motor;
             
         end
         
@@ -144,13 +140,47 @@ classdef Teaching < matlab.System
             obj.time_set2 = 0;
             obj.time_set3 = 0;
             
-            obj.Schritt2 = 0;
-            obj.Schritt3 = 0;
-            obj.Schritt4 = 0;
-            obj.Schritt5 = 0;
+            obj.Schritt2 = false;
+            obj.Schritt3 = false;
+            obj.Schritt4 = false;
+            obj.Schritt5 = false;
             
             obj.prop_n_Motor = 0;
             obj.prop_Abswertgeber_Set = 0;
+        end
+
+        function flag = isInputSizeLockedImpl(obj,index)
+            % Return true if input size is not allowed to change while
+            % system is running
+            flag = true;
+        end
+
+        function [Motor_DAC, AWG_Set, Finished] = getOutputSizeImpl(obj)
+            % Return size for each output port
+            Motor_DAC = [1 1];
+            AWG_Set = [1 1];
+            Finished = [1 1];
+        end
+
+        function [Motor_DAC, AWG_Set, Finished] = getOutputDataTypeImpl(obj)
+            % Return data type for each output port
+            Motor_DAC = 'double';
+            AWG_Set = 'double';
+            Finished = 'logical';
+        end
+
+        function [Motor_DAC, AWG_Set, Finished] = isOutputComplexImpl(obj)
+            % Return true for each output port with complex data
+            Motor_DAC = false;
+            AWG_Set = false;
+            Finished = false;
+        end
+
+        function [Motor_DAC, AWG_Set, Finished] = isOutputFixedSizeImpl(obj)
+            % Return true for each output port with fixed size
+            Motor_DAC = true;
+            AWG_Set = true;
+            Finished = true;
         end
     end
 end
