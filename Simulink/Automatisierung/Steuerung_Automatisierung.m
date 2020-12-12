@@ -6,9 +6,11 @@ classdef Steuerung_Automatisierung < matlab.System & matlab.system.mixin.Propaga
     properties
         % Sequence of boxes to pickup, numbered from left to right
         box_sequence = [1, 2, 3, 4, 5]; 
-        % 'true' or '1' if the absolute rotation encoder should be teached before running
-        needs_teaching = false;
+        % 'true' if the absolute rotation encoder should be teached before running
+        needs_teaching = true;
         start_time = 30;
+        % 'true' if midpoints should be given to help prevent collision with other boxes along the way
+        add_midpoints = true;
     end
 
     % Public, non-tunable properties
@@ -23,6 +25,7 @@ classdef Steuerung_Automatisierung < matlab.System & matlab.system.mixin.Propaga
         % the measured position is within this many cm from the target ...
         horiz_precision = 1; 
         vert_precision = 1;
+        angle_thres = 5;  % deg deviation from 180
         % and the horiz, vert, and angular speeds are under a threshold, 
         % in cm/sec and degrees/sec
         horiz_speed_thres = 1;
@@ -39,6 +42,9 @@ classdef Steuerung_Automatisierung < matlab.System & matlab.system.mixin.Propaga
         box_height = 11.5;  %cm
         box_width = 11;  %cm
         box_lid_width = 14;  %cm
+        
+        % When determining midpoints, add this height to the box_height
+        add_height_to_midpoints = 3;  %cm
 
         % mV-per-cm factor of the horizontal absolute rotary encoder 
         horiz_abs_rot_enc_factor = 39.37; 
@@ -64,7 +70,7 @@ classdef Steuerung_Automatisierung < matlab.System & matlab.system.mixin.Propaga
 
         box_nr
         magnet_on
-        on_way_to_goal
+        midpoint_reached
         horiz_setpoint
         vert_setpoint
 
@@ -109,6 +115,7 @@ classdef Steuerung_Automatisierung < matlab.System & matlab.system.mixin.Propaga
             
             obj.box_nr = 1;
             obj.magnet_on = false;
+            obj.midpoint_reached = false;
             obj.horiz_setpoint = 0;
             obj.vert_setpoint = 0;
             
@@ -118,7 +125,8 @@ classdef Steuerung_Automatisierung < matlab.System & matlab.system.mixin.Propaga
         end
 
         function [horiz_setpoint, vert_setpoint, magnet_on, do_horiz_teach, do_vert_teach, do_positioning, control_enable] = ... 
-                stepImpl(obj, horiz_value, horiz_speed, vert_value, vert_speed, angle_speed, horiz_teach_finished, vert_teach_finished, positioning_finished, Clock)
+                stepImpl(obj, horiz_value, horiz_speed, vert_value, vert_speed, angle, angle_speed, ... 
+                         horiz_teach_finished, vert_teach_finished, positioning_finished, Clock)
             % Implement algorithm. Calculate y as a function of input u and
             % discrete states.
              
@@ -156,8 +164,12 @@ classdef Steuerung_Automatisierung < matlab.System & matlab.system.mixin.Propaga
                     % Main automation part, initialization is finished! 
                     if obj.box_nr <= size(obj.box_x_pos, 2)
                         if obj.magnet_on
-                            obj.horiz_setpoint = obj.horiz_abs_rot_enc_factor * obj.goal_x_pos(obj.box_nr);
-                            obj.vert_setpoint = obj.vert_abs_rot_enc_factor * obj.goal_y_pos(obj.box_nr);
+                            if obj.add_midpoints && ~obj.midpoint_reached
+                                obj.vert_setpoint = obj.vert_abs_rot_enc_factor * (obj.box_y_pos(obj.box_nr) - (obj.box_height + obj.add_height_to_midpoints));
+                            else
+                                obj.horiz_setpoint = obj.horiz_abs_rot_enc_factor * obj.goal_x_pos(obj.box_nr);
+                                obj.vert_setpoint = obj.vert_abs_rot_enc_factor * obj.goal_y_pos(obj.box_nr);
+                            end
                         else
                             obj.horiz_setpoint = obj.horiz_abs_rot_enc_factor * obj.box_x_pos(obj.box_nr);
                             obj.vert_setpoint = obj.vert_abs_rot_enc_factor * obj.box_y_pos(obj.box_nr);
@@ -168,12 +180,18 @@ classdef Steuerung_Automatisierung < matlab.System & matlab.system.mixin.Propaga
                                 abs(obj.vert_setpoint - vert_value) < obj.vert_precision * obj.vert_abs_rot_enc_factor && ...
                                 horiz_speed < obj.horiz_speed_thres * obj.horiz_abs_rot_enc_factor && ... 
                                 vert_speed < obj.vert_speed_thres * obj.vert_abs_rot_enc_factor && ...
+                                abs(angle) < obj.angle_thres && ...
                                 angle_speed < obj.angle_speed_thres
 
                             if obj.magnet_on
-                                % Gripper is at goal position
-                                obj.magnet_on = false;
-                                obj.box_nr = obj.box_nr + 1;
+                                if obj.add_midpoints && ~obj.midpoint_reached
+                                    obj.midpoint_reached = true;
+                                else
+                                    % Gripper is at goal position
+                                    obj.magnet_on = false;
+                                    obj.midpoint_reached = false;
+                                    obj.box_nr = obj.box_nr + 1;
+                                end
                             else
                                 % Gripper is at box
                                 obj.magnet_on = true;
@@ -209,30 +227,6 @@ classdef Steuerung_Automatisierung < matlab.System & matlab.system.mixin.Propaga
         function resetImpl(obj)
             % Initialize / reset discrete-state properties
             % For initialization process
-%             obj.is_initializing = true; 
-%             obj.do_horiz_teach = false;
-%             obj.do_vert_teach = false;
-%             obj.horiz_is_teached = ~obj.needs_teaching;
-%             obj.vert_is_teached = ~obj.needs_teaching;
-%             obj.time0 = 0;
-%             
-%             % For main automation process
-%             obj.box_x_pos = (obj.box_sequence - 1) * obj.distance_between_boxes ...
-%                 + obj.first_box_to_baseline - obj.baseline_to_left_switch ...
-%                 - obj.box_width/2;
-%             obj.box_y_pos = (ones(size(obj.box_x_pos)) * obj.gripper_max_len) - obj.box_height;
-%             
-%             obj.goal_x_pos = ones(size(obj.box_x_pos)) * (obj.first_box_to_baseline + 4*obj.distance_between_boxes + 121.4);
-%             obj.goal_y_pos = (ones(size(obj.box_x_pos)) * obj.gripper_max_len) - ((0:(size(obj.box_x_pos, 2)-1)) * obj.box_height);
-%             
-%             obj.box_nr = 1;
-%             obj.magnet_on = false;
-%             obj.horiz_setpoint = 0;
-%             obj.vert_setpoint = 0;
-%             
-%             % For both processes
-%             obj.is_positioned = false;
-%             obj.do_positioning = false;
         end
 
 
@@ -343,7 +337,7 @@ classdef Steuerung_Automatisierung < matlab.System & matlab.system.mixin.Propaga
             % group = matlab.system.display.Section(mfilename('class'));
             groups = matlab.system.display.SectionGroup(...
               'Title','General',...
-              'PropertyList',{'box_sequence', 'needs_teaching', 'start_time'});
+              'PropertyList',{'box_sequence', 'needs_teaching', 'start_time', 'add_midpoints'});
             
             %lowerGroup = matlab.system.display.SectionGroup(...
             %  'Title','Coefficients', ...
