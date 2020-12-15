@@ -8,7 +8,7 @@ for i = 1:size(system.theta,2)
     sys = system;
     sys.L = system.theta(i);
     
-    [A, B, C] = calcSysMatrix(sys);
+    [A, B, C, ~, ~] = calcSysMatrix(sys);
     
     % Rückführung auf konstante Ausgangsrückführung siehe BB RLM 7.2
     A_g = [A,                   zeros(size(A,1),1);

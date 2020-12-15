@@ -68,3 +68,14 @@ B_D = [-x(5), -x(6), -x(7)];
 C_D = x(4);
 D_D = [x(1), x(2), x(3)];
 
+sys = system;
+sys.L = system.currL;
+[~, ~, ~, matB, matE] = calcSysMatrix(sys);
+
+
+
+
+
+
+
+
