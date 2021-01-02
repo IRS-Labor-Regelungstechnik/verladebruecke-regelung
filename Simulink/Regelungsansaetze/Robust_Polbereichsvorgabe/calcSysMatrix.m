@@ -7,7 +7,7 @@ matA = [0 1                     0                   0;
 
 matB = [0; (2*pi*sys.R*sys.K_K)/(sys.ue*sys.T_K); 0; (-2*pi*sys.R*sys.K_K)/(sys.ue*sys.T_K*sys.L)];
 
-matC = [1 0 0 0; 0 1 0 0; 0 0 1 0];
+matC = [1 0 0 0; 0 0 1 0];
 
 % Einfluss der Störung auf Zustände
 matE = matB;

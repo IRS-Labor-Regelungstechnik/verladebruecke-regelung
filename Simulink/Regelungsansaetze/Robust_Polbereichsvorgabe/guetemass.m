@@ -18,8 +18,8 @@ for i = 1:size(system.theta,2)
     C_g = [C,                   zeros(size(C,1),1);
            zeros(1,size(C,2)),  1];
     
-    K_g = [x(1), x(2), x(3), x(4);
-           x(5), x(6), x(7), x(8)];
+    K_g = [x(1), x(2), x(3);
+           x(4), x(5), x(6)];
     
     % berechne Eigenwerte des neuen Systems 
     lambda = eig(A_g - (B_g * K_g * C_g));
