@@ -68,6 +68,11 @@ B_2 = matB_g_u(numMessg+1:end);
 % Entwurf mittels Polvorgabe
 % alle EW bei -10
 
-matL = [10;
-        207.5980901];
+ew1_2 = -100; % Eigenwerte des BEO
+
+l1 = 2*(-1*ew1_2)-10;
+l2 = (ew1_2^2)/A_22(1,2);
+
+matL = [l1;
+        l2];
 
