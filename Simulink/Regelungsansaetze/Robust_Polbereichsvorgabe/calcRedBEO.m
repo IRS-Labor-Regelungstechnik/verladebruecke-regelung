@@ -11,12 +11,16 @@
 
 sys = system;
 sys.L = system.currL;
-[matA_g, matB_g, ~, ~, ~] = calcSysMatrix(sys);
+[matA_g, matB_g, ~, ~, ~] = calcSysMatrixBEO(sys);
+
+%% Störgrößenaufschaltung
+% berechne Matrizen für Störgrößenaufschaltung
+[~, ~, ~, matB, matE] = calcSysMatrixBEO(sys);
 
 %% Umordnung der Zustände
 
 % Messgrößen: 1, Sensorkoordinaten: 0
-messgroessen = [1, 0, 1, 0, 0];
+messgroessen = [1, 0, 0];
 numMessg = sum(messgroessen);
 
 % Umordnung der Zeilen
@@ -61,30 +65,9 @@ B_1 = matB_g_u(1:numMessg);
 B_2 = matB_g_u(numMessg+1:end);
 
 %% Berechne L
-
-% Entwurf mittels Polbereichsvorgabe
-
-% Polbereich
-% a_P = 0.4;
-% b_P = 0.5;
-% R_P = 42;
-% 
-% P = 100;
-% 
-% K_0 = [1 1;
-%        1 1;
-%        1 1];
-% 
-% options = optimoptions(@fminunc,'Display','iter','Algorithm','quasi-newton',...
-%     'OptimalityTolerance', 1e-9, 'StepTolerance', 1e-9,...
-%     'MaxFunctionEvaluations', 10000, 'MaxIterations', 10000);
-% [x, fval] = fminunc(@(x)guetemass(x, a_P, b_P, R_P, P, system), x0, options);
-
-%% Entwurf mittels Polvorgabe
+% Entwurf mittels Polvorgabe
 % alle EW bei -10
 
-matL = [20             0;
-        -16.6666666667 0;
-        0              -622.7943];
-
+matL = [10;
+        207.5980901];
 

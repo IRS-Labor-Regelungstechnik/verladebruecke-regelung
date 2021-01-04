@@ -110,10 +110,7 @@ B_D = [-x(4), -x(5)];
 C_D = x(3);
 D_D = [x(1), x(2)];
 
-% berechne Matrizen für Störgrößenaufschaltung
-sys = system;
-sys.L = system.currL;
-[~, ~, ~, matB, matE] = calcSysMatrix(sys);
+
 
 
 
