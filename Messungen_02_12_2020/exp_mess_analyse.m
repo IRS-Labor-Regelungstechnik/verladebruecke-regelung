@@ -16,7 +16,7 @@ clear all;
 start_zeit = 13;
 end_zeit = 1000;
 
-measurement_nr = '7';
+measurement_nr = '5';
 nr_files = 4;
 
 eliminate_rollover_for = 4; % Messung des Resolvers -> eliminiere rollover
