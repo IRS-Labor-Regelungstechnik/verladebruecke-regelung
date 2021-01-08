@@ -18,7 +18,7 @@ strecke_ges = 2.54; % Strecke zwischen linkem und rechtem Endschalter
 %% read Data
 sample_time = 1e-3; % sekunden
 
-start_zeit = [13 13 13 13];
+start_zeit = [13 13 13 13]; % in sekunden
 end_zeit = [21 21 20 22];
 
 % Messungen für Identifikation (Absolutwertgeber geht hier nicht in Begrenzung)
@@ -97,6 +97,7 @@ data4_pt1_f.u = data4_pt1.u;
 
 %% Identifikation des PT1-Gliedes
 % Daten hierzu: datax_pt1_f
+data_pt1_f = merge(data1_pt1_f,data2_pt1_f,data3_pt1_f,data4_pt1_f);
 
 %systemIdentification
 
@@ -115,8 +116,8 @@ ts = 0; % kontinuierliches Modell
 model_greybox = idgrey('calcSysMatrixId', par_guess, 'c', aux, 0);
 
 % Identifikation
-model = greyest(data_grey, model_greybox, greyestOptions('Display','on'));
+model = greyest(data_grey, model_greybox, greyestOptions('Display','on','InitialState','zero','DisturbanceModel','none'));
 
-
+%systemIdentification
 
 

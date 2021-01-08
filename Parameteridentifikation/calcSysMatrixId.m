@@ -1,4 +1,4 @@
-function [matA, matB, matC, matD, matK, X0] = calcSysMatrixId(par, ts, aux)
+function [matA, matB, matC, matD] = calcSysMatrixId(par, ts, aux)
 % Laufkatzenteilsystem ohne Winkel
 
 T_K = par(1);
@@ -11,8 +11,5 @@ matA = [0 1;
 matB = [0; (2*pi*R*K_K)/(ue*T_K)];
 matC = [1 0];
 matD = [0];
-
-X0 = [0; 0];
-matK = [0; 0];
 
 end
