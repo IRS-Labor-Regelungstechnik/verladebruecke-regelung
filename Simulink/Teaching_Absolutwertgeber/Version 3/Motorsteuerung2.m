@@ -63,7 +63,7 @@ classdef Motorsteuerung2 < matlab.System
             
             %Parameter
             motor_drehzahl = 0.01;
-            dauer_start_zu_endpunkt = 40; % sekunden
+            dauer_start_zu_endpunkt = 70; % sekunden % bei x-Richtung: 70sek, y-Richtung (Hub): 100sek
             
             
             % Teach Vorgang
