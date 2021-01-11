@@ -7,7 +7,7 @@
 %% Parameter
 
 % tatsächliches L
-system.currL = 1.0;
+system.currL = 0.2;
 
 % mechanisches System:
 system.R = 0.046; % Radius Rad
