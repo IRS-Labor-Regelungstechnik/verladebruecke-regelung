@@ -13,10 +13,10 @@
 clear all;
 
 %% Parameter
-start_zeit = 13;
+start_zeit = 0;
 end_zeit = 1000;
 
-measurement_nr = '6';
+measurement_nr = '10';
 nr_files = 4;
 
 eliminate_rollover_for = 4; % Messung des Resolvers -> eliminiere rollover
