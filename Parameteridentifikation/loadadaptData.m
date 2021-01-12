@@ -3,7 +3,7 @@ function [eingangs_sig, ausgangs_sig, resolver_sig] = loadadaptData(k, measureme
 % Toolbox an
 
 % Eingangssignal
-file_name = strcat('mess',measurement_nr(k), '_3');
+file_name = strcat('mess',num2str(measurement_nr(k)), '_3');
 s = load(strcat(file_name, '.mat'));
 input_sig = [s.(file_name).X.Data; s.(file_name).Y.Data];
 temp_sig = slice_time_series(input_sig, start_zeit(k), end_zeit(k)); % schneide Bereich aus
@@ -16,7 +16,7 @@ eingangs_sig = eingangs_sig .* 7.5; % Umrechnung in s^-1
 
 
 % Ausgangssignal
-file_name = strcat('mess',measurement_nr(k), '_1');
+file_name = strcat('mess',num2str(measurement_nr(k)), '_1');
 s = load(strcat(file_name, '.mat'));
 input_sig = [s.(file_name).X.Data; s.(file_name).Y.Data];
 temp_sig = slice_time_series(input_sig, start_zeit(k), end_zeit(k)); % schneide Bereich aus
@@ -28,7 +28,7 @@ ausgangs_sig = ausgangs_sig .* strecke_ges; % Umrechnung in Strecke
 
 
 % Resolver
-file_name = strcat('mess',measurement_nr(k), '_4');
+file_name = strcat('mess',num2str(measurement_nr(k)), '_4');
 s = load(strcat(file_name, '.mat'));
 input_sig = [s.(file_name).X.Data; s.(file_name).Y.Data];
 temp_sig = slice_time_series(input_sig, start_zeit(k), end_zeit(k)); % schneide Bereich aus
