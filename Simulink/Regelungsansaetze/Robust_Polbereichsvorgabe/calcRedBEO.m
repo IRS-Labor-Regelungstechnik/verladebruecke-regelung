@@ -20,7 +20,10 @@ sys.L = system.currL;
 %% Umordnung der Zustände
 
 % Messgrößen: 1, Sensorkoordinaten: 0
+% BEO für Störgröße und Geschwindigkeit
 messgroessen = [1, 0, 0];
+% BEO für Störgröße
+% messgroessen = [1, 1, 0];
 numMessg = sum(messgroessen);
 
 % Umordnung der Zeilen
@@ -66,8 +69,8 @@ B_2 = matB_g_u(numMessg+1:end);
 
 %% Berechne L
 % Entwurf mittels Polvorgabe
-% alle EW bei -10
 
+% BEO für Störgröße und Geschwindigkeit
 ew1_2 = -100; % Eigenwerte des BEO
 
 l1 = 2*(-1*ew1_2)-10;
@@ -75,4 +78,12 @@ l2 = (ew1_2^2)/A_22(1,2);
 
 matL = [l1;
         l2];
+
+% BEO für Störgröße
+% ew = -50; % Eigenwerte des BEO
+% 
+% l1 = 0;
+% l2 = -1*ew/A_12(2);
+% 
+% matL = [l1 l2];
 

@@ -1,4 +1,8 @@
 function [matA_g, matB_g, matC_g, matB, matE] = calcSysMatrixBEO(sys)
+% berechne die Systemmatrizen der Laufkatze ohne Winkeldynamik inklusive
+% Störmodell
+% wird für die Berechnung des reduzierten BEO und die 
+% Störgrößenaufschaltung benötigt
 
 matA = [0 1;
         0 -(sys.T_K^-1)];
