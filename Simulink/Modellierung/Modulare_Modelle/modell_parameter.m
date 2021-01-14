@@ -38,29 +38,3 @@ assignin('base', 'ue2',ue2)
 assignin('base', 'L_0',L_0)
 assignin('base', 'x_0',x_0)
 assignin('base', 'phi_0',phi_0)
-
-%% Linearized System
-
-L=0.2;
-
-%Laufkatze
-a22 = -1/T1;
-a42 = 1/(L*T1);
-a43 = -g/L;
-
-b2 = 2*pi*r1/(ue1*T1);
-b4 = -2*pi*r1/(ue1*T1);
-
-A1=[0 1 0 0;
-   0 a22 0 0;
-   0 0 0 1;
-   0 a42 a43 0];
-B1=[0 b2 0 b4]';
-C1=eye(4);
-D1=[0 0 0 0]';
-
-%Hubmotor
-A2=[0 1 ; 0 -1/T2];
-B2=[0  2*pi*r2/(ue2*T2)]';
-C2=eye(2);
-D2=[0 0]';
