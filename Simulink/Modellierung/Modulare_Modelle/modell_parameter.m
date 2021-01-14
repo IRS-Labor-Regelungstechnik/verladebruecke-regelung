@@ -1,40 +1,44 @@
 %% Parameters
 
-L_0 = 0.2;
-x_0 = 0;
-phi_0 = 0;
-g = 9.81;
-T1 = 0.05;
-T2 = 0.05;
-r1 = 0.05;
-r2 = 0.05;
-ue1 = 6;
-ue2 = 3;
-st1 = 0.1;
-d = 0.02;  % Daempfung
+param.L_0 = 1.3;
+param.init_x1 = 0;
+param.phi_0 = 0;
+param.T_K = 0.1;
+param.T2 = 0.05;
+param.K_K = 1;
+param.K2 = 1;
+param.r_K = 0.046;
+param.r2 = 0.05;
+param.ue_K = 6;
+param.ue2 = 3;
+param.st1 = 0.1;
+param.d = 0.02;  % Daempfung
+param.k_AWG_K = 39.37;
+param.k_AWG_G = 39.37;
+
 
 %% Input
 
-%Spannung
-assignin('base', 'u1',0.1)
-assignin('base', 'u2',0.1)
-%Start
-assignin('base', 't01',0)
-assignin('base', 't02',5)
-%Ende
-assignin('base', 't1',5)
-assignin('base', 't2',8)
-
-%% Nonlinear Model
-
-assignin('base', 'T1',T1)
-assignin('base', 'r1',r1)
-assignin('base', 'ue1',ue1)
-
-assignin('base', 'T2',T2)
-assignin('base', 'r2',r2)
-assignin('base', 'ue2',ue2)
-
-assignin('base', 'L_0',L_0)
-assignin('base', 'x_0',x_0)
-assignin('base', 'phi_0',phi_0)
+% %Spannung
+% assignin('base', 'u1',0.1)
+% assignin('base', 'u2',0.1)
+% %Start
+% assignin('base', 't01',0)
+% assignin('base', 't02',5)
+% %Ende
+% assignin('base', 't1',5)
+% assignin('base', 't2',8)
+% 
+% %% Nonlinear Model
+% 
+% assignin('base', 'T1',T1)
+% assignin('base', 'r1',r1)
+% assignin('base', 'ue1',ue1)
+% 
+% assignin('base', 'T2',T2)
+% assignin('base', 'r2',r2)
+% assignin('base', 'ue2',ue2)
+% 
+% assignin('base', 'L_0',L_0)
+% assignin('base', 'x_0',x_0)
+% assignin('base', 'phi_0',phi_0)
