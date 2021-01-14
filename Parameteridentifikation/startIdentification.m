@@ -31,22 +31,6 @@ start_zeit = [13 13 7 13]; % in sekunden
 end_zeit = [17 20 13 22];
 measurement_nr = [4,5,8,9];
 
-% Schätzung der maximalen Steigung der Drehzahl
-% start_zeit = [18.5 15.3 17.45 20.2 16.3]; % in sekunden
-% end_zeit = [19.2 15.8 17.8 20.5 17];
-% measurement_nr = [2 3 4 5 10];
-% 
-% x1=(18.5:0.001:19.2);
-% x1(end)=[];
-% x2=(15.3:0.001:15.8);
-% x2(end)=[];
-% x3=(17.45:0.001:17.8);
-% x3(end)=[];
-% x4=(20.2:0.001:20.5);
-% x4(end)=[];
-% x5=(16.3:0.001:17);
-% x5(end)=[];
-
 %% 1. Messung
 k = 1;
 [eingangs_sig_1, ausgangs_sig_1, resolver_sig_1] = loadadaptData(k, measurement_nr, start_zeit, end_zeit, strecke_ges, R, ue);

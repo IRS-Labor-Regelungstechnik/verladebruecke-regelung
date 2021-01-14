@@ -51,7 +51,7 @@ a_P = 0.6;
 b_P = 1.0;
 R_P = 43;
 
-P = 100;
+P = 1000;
 
 % Startwert für K
 % 1. Opt
