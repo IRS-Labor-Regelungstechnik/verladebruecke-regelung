@@ -4,18 +4,18 @@ param.L_0 = 1.3;
 param.init_x1 = 0;
 param.phi_0 = 0;
 param.T_K = 0.1;
-param.T2 = 0.05;
+param.T_G = 0.05;
 param.K_K = 1;
-param.K2 = 1;
+param.K_G = 1;
 param.r_K = 0.046;
-param.r2 = 0.05;
+param.r_G = 0.05;
 param.ue_K = 6;
-param.ue2 = 3;
-param.st1 = 0.1;
+param.ue_G = 3;
 param.d = 0.02;  % Daempfung
 param.k_AWG_K = 39.37;
 param.k_AWG_G = 39.37;
 
+st1 = 1;  % for lin_modell_test and nl_modell_test
 
 %% Input
 
