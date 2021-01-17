@@ -10,8 +10,6 @@
 %% berechne Systemmatrizen
 
 sys = system;
-sys.L = system.currL;
-% [matA, ~, matC] = calcSysMatrixKalman(sys); % matB wird untern berechnet
 [matA_g, matB_g, matC_g, ~, ~] = calcSysMatrixBEO(sys);
 
 %% Störgrößenaufschaltung

@@ -6,8 +6,11 @@
 
 %% Parameter
 
-% tatsächliches L
-system.currL = 0.4;
+% Für die Simulation und Berechnung des Kalman Filters verwendete Parameter:
+system.L = 0.4;
+% PT1 Glied
+system.T_K = 0.03032;
+system.K_K = 1;
 
 % mechanisches System:
 system.R = 0.046; % Radius Rad
@@ -18,10 +21,6 @@ theta_lb = 0.15; % L upper bound
 theta_ub = 1.65; % L lower bound
 
 system.theta = theta_lb:1.5:theta_ub;
-
-% PT1 Glied
-system.T_K = 0.03032;
-system.K_K = 1;
 
 %% nur messbare Zustände zurückgeführt
 %% Polbereich
