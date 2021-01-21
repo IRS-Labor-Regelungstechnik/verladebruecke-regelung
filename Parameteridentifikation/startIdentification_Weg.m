@@ -1,5 +1,5 @@
 %
-% Identifikation der PT1-Parameter
+% Identifikation der PT1-Parameter des Systems in x-Richtung
 %
 
 %%
