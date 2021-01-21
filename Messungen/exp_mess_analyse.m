@@ -13,9 +13,9 @@ resolver_sig = 4; % _4: Messung des Resolversignals
 start_zeit = 0; 
 end_zeit = 1000;
 
-measurement_nr = '3';
+measurement_nr = '11';
 
-nr_files = 4;
+nr_files = 3;
 
 meas_data = [];  % this can be loaded in simulink via From Workspace
 
