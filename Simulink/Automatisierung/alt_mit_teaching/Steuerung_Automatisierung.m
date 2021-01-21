@@ -5,7 +5,8 @@ classdef Steuerung_Automatisierung < matlab.System
     properties
         % Sequence of boxes to pickup, numbered from left to right
         box_sequence = [1, 2, 3, 4, 5]; 
-
+        % 'true' if the absolute rotation encoder should be teached before running
+        needs_teaching = true;
         start_time = 30;
         % 'true' if midpoints should be given to help prevent collision with other boxes along the way
         add_midpoints = true;
@@ -16,9 +17,8 @@ classdef Steuerung_Automatisierung < matlab.System
         % Total drivable rail length, in cm
         total_rail_length = 135.8 + 118.2; 
         
-        % Gripper measurements
-        gripper_base_to_ground = 163;  %cm
-        min_gripper_dist_to_ground = 2.5;  %cm        
+        % Total drivable gripper height, in cm
+        gripper_max_len = 164;  %cm
         
         % A position is considered reached if ...
         % the measured position is within this many cm from the target ...
@@ -48,11 +48,16 @@ classdef Steuerung_Automatisierung < matlab.System
         % mV-per-cm factor of the horizontal absolute rotary encoder 
         horiz_abs_rot_enc_factor = 39.37; 
         % mV-per-cm factor of the vertical absolute rotary encoder 
-        vert_abs_rot_enc_factor = 72.73;
+        vert_abs_rot_enc_factor = 69.69;  % THIS IS A PLACEHOLDER VALUE
     end
 
     properties(DiscreteState)
         % For initialization process
+        is_initializing 
+        do_horiz_teach
+        do_vert_teach
+        horiz_is_teached
+        vert_is_teached
         time0
 
         % For main automation process
@@ -91,17 +96,21 @@ classdef Steuerung_Automatisierung < matlab.System
         function setupImpl(obj)
             % Perform one-time calculations, such as computing constants
             % For initialization process
+            obj.is_initializing = true; 
+            obj.do_horiz_teach = false;
+            obj.do_vert_teach = false;
+            obj.horiz_is_teached = ~obj.needs_teaching;
+            obj.vert_is_teached = ~obj.needs_teaching;
             obj.time0 = 0;
             
             % For main automation process
             obj.box_x_pos = (obj.box_sequence - 1) * obj.distance_between_boxes ...
                 + obj.first_box_to_baseline - obj.baseline_to_left_switch ...
                 - obj.box_width/2;
-            obj.box_y_pos = (ones(size(obj.box_x_pos)) * obj.gripper_base_to_ground) - obj.box_height + obj.min_gripper_dist_to_ground;
+            obj.box_y_pos = (ones(size(obj.box_x_pos)) * obj.gripper_max_len) - obj.box_height;
             
             obj.goal_x_pos = ones(size(obj.box_x_pos)) * (obj.first_box_to_baseline + 4*obj.distance_between_boxes + 121.4);
-            obj.goal_y_pos = (ones(size(obj.box_x_pos)) * obj.gripper_base_to_ground) - ((1:size(obj.box_x_pos, 2)) * obj.box_height) ...
-                + obj.min_gripper_dist_to_ground;
+            obj.goal_y_pos = (ones(size(obj.box_x_pos)) * obj.gripper_max_len) - ((1:size(obj.box_x_pos, 2)) * obj.box_height);
             
             obj.box_nr = 1;
             obj.magnet_on = false;
@@ -114,19 +123,41 @@ classdef Steuerung_Automatisierung < matlab.System
             obj.do_positioning = false;
         end
 
-        function [horiz_setpoint, vert_setpoint, magnet_on, do_positioning, control_enable] = ... 
+        function [horiz_setpoint, vert_setpoint, magnet_on, do_horiz_teach, do_vert_teach, do_positioning, control_enable] = ... 
                 stepImpl(obj, horiz_value, horiz_speed, vert_value, vert_speed, angle, angle_speed, ... 
-                         positioning_finished, Clock)
+                         horiz_teach_finished, vert_teach_finished, positioning_finished, Clock)
             % Implement algorithm. Calculate y as a function of input u and
             % discrete states.
-            control_enable = Clock - obj.time0 > obj.start_time; 
-            if control_enable
-                if ~obj.is_positioned
-                    if obj.do_positioning && positioning_finished
-                        obj.is_positioned = true;
-                        obj.do_positioning = false;
-                    else
-                        obj.do_positioning = true;
+             
+            if Clock - obj.time0 > obj.start_time
+                if obj.is_initializing
+                    if ~obj.horiz_is_teached
+                        if obj.do_horiz_teach && horiz_teach_finished
+                            obj.horiz_is_teached = true;
+                            obj.do_horiz_teach = false;
+                        else
+                            obj.do_horiz_teach = true;
+                        end
+                    else 
+                        if ~obj.vert_is_teached
+                            if obj.do_vert_teach && vert_teach_finished
+                                obj.vert_is_teached = true;
+                                obj.do_vert_teach = false;
+                            else
+                                obj.do_vert_teach = true;
+                            end
+                        else
+                            if ~obj.is_positioned
+                                if obj.do_positioning && positioning_finished
+                                    obj.is_positioned = true;
+                                    obj.do_positioning = false;
+                                else
+                                    obj.do_positioning = true;
+                                end
+                            else
+                                obj.is_initializing = false;
+                            end
+                        end
                     end
                 else 
                     % Main automation part, initialization is finished! 
@@ -181,7 +212,9 @@ classdef Steuerung_Automatisierung < matlab.System
                 end
             end
             
-            
+            control_enable = ~obj.is_initializing; 
+            do_horiz_teach = obj.do_horiz_teach;
+            do_vert_teach = obj.do_vert_teach;
             do_positioning = obj.do_positioning; 
             magnet_on = obj.magnet_on;
             
@@ -196,11 +229,11 @@ classdef Steuerung_Automatisierung < matlab.System
         end
 
 
-%         function flag = isInputSizeLockedImpl(obj,index)
-%             % Return true if input size is not allowed to change while
-%             % system is running
-%             flag = true;
-%         end
+        function flag = isInputSizeLockedImpl(obj,index)
+            % Return true if input size is not allowed to change while
+            % system is running
+            flag = true;
+        end
 
         %% Backup/restore functions
         function s = saveObjectImpl(obj)
@@ -222,6 +255,74 @@ classdef Steuerung_Automatisierung < matlab.System
             % Set public properties and states
             loadObjectImpl@matlab.System(obj,s,wasLocked);
         end
+
+        %% Simulink functions
+        function ds = getDiscreteStateImpl(obj)
+            % Return structure of properties with DiscreteState attribute
+            ds = struct([]);
+        end
+
+        function [out,out2,out3,out4,out5,out6,out7] = isOutputFixedSizeImpl(obj)
+            % Return true for each output port with fixed size
+            out = true;
+            out2 = true;
+            out3 = true;
+            out4 = true;
+            out5 = true;
+            out6 = true;
+            out7 = true;
+        end
+
+        function icon = getIconImpl(obj)
+            % Return text as string or cell array of strings for the System
+            % block icon
+            icon = mfilename('class'); % Use class name
+        end
+
+        function [out,out2,out3,out4,out5,out6,out7] = getOutputSizeImpl(obj)
+            % Return size for each output port
+            out = [1 1];
+            out2 = [1 1];
+            out3 = [1 1];
+            out4 = [1 1];
+            out5 = [1 1];
+            out6 = [1 1];
+            out7 = [1 1];
+        end
+
+        function [horiz_setpoint, vert_setpoint, magnet_on, do_horiz_teach, ...
+                do_vert_teach, do_positioning, control_enable] = getOutputDataTypeImpl(obj)
+            % Return data type for each output port
+            horiz_setpoint = 'double';
+            vert_setpoint = 'double';
+            magnet_on = 'logical';
+            do_horiz_teach = 'logical';
+            do_vert_teach = 'logical';
+            do_positioning = 'logical';
+            control_enable = 'logical';
+        end
+
+        function [out,out2,out3,out4,out5,out6,out7] = isOutputComplexImpl(obj)
+            % Return true for each output port with complex data
+            out = false;
+            out2 = false;
+            out3 = false;
+            out4 = false;
+            out5 = false;
+            out6 = false;
+            out7 = false;
+        end
+        
+%         function [weg_awg, hub_awg, winkel] = getInputNamesImpl(~)
+%            weg_awg = 'Absolutwertgeber Laufkatze';
+%            hub_awg = 'Absolutwertgeber Greifer';
+%            winkel = 'Winkel Greifer';
+%         end
+%         function [weg_awg_soll, hub_awg_soll, magnet_sig] = getOutputNamesImpl(~)
+%            weg_awg_soll = 'Sollwert AWG Laufkatze';
+%            hub_awg_soll = 'Sollwert AWG Greifer';
+%            magnet_sig = 'Magnet Signal';
+%         end
     end
 
     methods(Static, Access = protected)
@@ -235,7 +336,7 @@ classdef Steuerung_Automatisierung < matlab.System
             % group = matlab.system.display.Section(mfilename('class'));
             groups = matlab.system.display.SectionGroup(...
               'Title','General',...
-              'PropertyList',{'box_sequence', 'start_time', 'add_midpoints'});
+              'PropertyList',{'box_sequence', 'needs_teaching', 'start_time', 'add_midpoints'});
             
             %lowerGroup = matlab.system.display.SectionGroup(...
             %  'Title','Coefficients', ...
