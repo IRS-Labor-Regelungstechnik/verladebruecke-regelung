@@ -1,7 +1,7 @@
-classdef Motorsteuerung2 < matlab.System
+classdef laufkatze_teach_classdef < matlab.System
     % Motorsteuerung2 Skript zum automatisierten Teaching der Absolutwertdrehgeber
     %
-    % Laufkatze bzw. Greifer muss sich zum Start ungefähr in der Mitte befinden
+    % Laufkatze bzw. Greifer muss sich zum Start ungef?hr in der Mitte befinden
     
     % Public, tunable properties
     properties
@@ -74,7 +74,7 @@ classdef Motorsteuerung2 < matlab.System
                     obj.time0 = Clock;
                 end
                 
-                obj.Schritt2 = 1; % Einstellungen für Schritt 2 abgeschlossen
+                obj.Schritt2 = 1; % Einstellungen f?r Schritt 2 abgeschlossen
             end
             
             if((Clock - obj.time0) >= dauer_start_zu_endpunkt) && (obj.Schritt2 == 1) && (obj.Schritt3 == 0) % Ende erreicht
@@ -87,7 +87,7 @@ classdef Motorsteuerung2 < matlab.System
                     obj.time1 = Clock;
                 end
                 
-                if((Clock - obj.time1) >= 1.5) %%% von 1 auf 1.5 geändert
+                if((Clock - obj.time1) >= 1.5) %%% von 1 auf 1.5 ge?ndert
                     obj.prop_Abswertgeber_Set = 0; % setze Setausgang nach 1s wieder auf 0
                     obj.Schritt3 = 1;
                 end
@@ -95,14 +95,14 @@ classdef Motorsteuerung2 < matlab.System
             end
             
             % In Schritt 3 erst 1s HIGH dann 3s warten -> 4s
-            if((Clock - obj.time1) >= 5) && (obj.Schritt3 == 1) && (obj.Schritt4 == 0) %%% von 4 auf 5 geändert
+            if((Clock - obj.time1) >= 5) && (obj.Schritt3 == 1) && (obj.Schritt4 == 0) %%% von 4 auf 5 ge?ndert
                 obj.prop_n_Motor = motor_drehzahl;
                 if(obj.time_set3 == 0)
                     obj.time_set3 = 1;
                     obj.time3 = Clock;
                 end
                 
-                obj.Schritt4 = 1; % Einstellungen für Schritt 4 abgeschlossen
+                obj.Schritt4 = 1; % Einstellungen f?r Schritt 4 abgeschlossen
             end
             
             if((Clock - obj.time3) >= dauer_start_zu_endpunkt) && (obj.Schritt4 == 1) && (obj.Schritt5 == 0)
@@ -115,7 +115,7 @@ classdef Motorsteuerung2 < matlab.System
                     obj.time2 = Clock;
                 end
                 
-                if((Clock - obj.time2) >= 2) %%% von 1 auf 2 geändert
+                if((Clock - obj.time2) >= 2) %%% von 1 auf 2 ge?ndert
                     obj.prop_Abswertgeber_Set = 0;
                     
                     obj.Schritt5 = 1; % Schritt 5 abgeschlossen, Teaching abgeschlossen

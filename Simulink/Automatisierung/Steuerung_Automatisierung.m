@@ -1,5 +1,4 @@
-classdef Steuerung_Automatisierung < matlab.System & matlab.system.mixin.Propagates ...
-        & matlab.system.mixin.CustomIcon
+classdef Steuerung_Automatisierung < matlab.System
     % Steuerung_Automatisierung The automation procedure block for the gantry crane controller
 
     % Public, tunable properties
