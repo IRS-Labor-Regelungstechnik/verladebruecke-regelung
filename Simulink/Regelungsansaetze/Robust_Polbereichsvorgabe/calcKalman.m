@@ -10,8 +10,6 @@
 %% berechne Systemmatrizen
 
 sys = system;
-sys.L = system.currL;
-% [matA, ~, matC] = calcSysMatrixKalman(sys); % matB wird untern berechnet
 [matA_g, matB_g, matC_g, ~, ~] = calcSysMatrixBEO(sys);
 
 %% Störgrößenaufschaltung
@@ -22,7 +20,7 @@ sys.L = system.currL;
 
 % Kovarianz
 matR = 1; % Kovarianzmatrix Ausgangsrauschen % TODO
-matQ = 100; % Kovarianzmatrix Eingangsrauschen % TODO
+matQ = 200; % Kovarianzmatrix Eingangsrauschen % TODO
 
 % Eingangsrauschen
 % Annahme: wird bei der Übertragung der Solldrehzahl von der dSpace Box zum

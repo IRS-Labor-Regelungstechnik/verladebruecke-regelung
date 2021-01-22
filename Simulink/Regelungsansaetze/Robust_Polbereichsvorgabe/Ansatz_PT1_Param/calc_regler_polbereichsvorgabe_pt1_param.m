@@ -9,7 +9,7 @@
 % Für die Simulation und Berechnung des Kalman Filters verwendete Parameter:
 system.L = 0.4;
 % PT1 Glied
-system.T_K = 0.03032;
+system.T_K = 1; % 0.03032
 system.K_K = 1;
 
 % mechanisches System:
@@ -17,24 +17,27 @@ system.R = 0.046; % Radius Rad
 system.ue = 6; % Übersetzungsverhältnis
 system.g = 9.81; % Erdbeschleunigung
 
-theta_lb = 0.15; % L upper bound
-theta_ub = 1.65; % L lower bound
+theta1_lb = 0.15; % L upper bound
+theta1_ub = 1.65; % L lower bound
 
-system.theta = theta_lb:1.6:theta_ub;
+theta2_lb = 0.03; % T_K upper bound
+theta2_ub = 1.0; % T_K lower bound
 
+system.theta1 = theta1_lb:1.5:theta1_ub;
+system.theta2 = theta2_lb:0.97:theta2_ub;
+
+%% nur messbare Zustände zurückgeführt
 %% Polbereich
 
-% 1.Opt
-a_P = 0.6;
-b_P = 1.0;
+a_P = 0.39;
+b_P = 5.0;
 R_P = 43;
 
-P = 1000;
+P = 500;
 
 % Startwert für K
-% 1. Opt
-K_0 = [-1.785777488051462e+02 -39.253338189456370 2.761578135129279e+02;
-    -9.780470899819305 -1.011840131826977 14.472030984989194];
+K_0 = [0.223325103890429 -1.604664752468023e+02 2.703819621265890e+02;
+    -0.114913897985755 -2.035369632621684 4.514258453015668];
 
 %% Optimierung
 
@@ -48,7 +51,7 @@ x0(6) = K_0(2,3);
 options = optimoptions(@fminunc,'Display','iter','Algorithm','quasi-newton',...
     'OptimalityTolerance', 1e-9, 'StepTolerance', 1e-9,...
     'MaxFunctionEvaluations', 10000, 'MaxIterations', 10000);
-[x, fval] = fminunc(@(x)guetemass(x, a_P, b_P, R_P, P, system), x0, options);
+[x, fval] = fminunc(@(x)guetemass_pt1_param(x, a_P, b_P, R_P, P, system), x0, options);
 
 %% Ergebnisse
 

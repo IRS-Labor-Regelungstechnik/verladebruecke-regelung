@@ -11,4 +11,5 @@ if isempty(end_index)
     end_index = size(ts_in, 2);
 end
 ts = ts_in(:,start_index:end_index);
+ts(1,:) = ts(1,:) - ts(1,1);
 end
