@@ -11,11 +11,11 @@
 
 sys = system;
 sys.L = system.currL;
-[matA_g, matB_g, ~, ~, ~] = calcSysMatrixBEO(sys);
+[matA_g, matB_g, ~, ~, ~] = calcSysMatrixKleinStoer(sys);
 
 %% Störgrößenaufschaltung
 % berechne Matrizen für Störgrößenaufschaltung
-[~, ~, ~, matB, matE] = calcSysMatrixBEO(sys);
+[~, ~, ~, matB, matE] = calcSysMatrixKleinStoer(sys);
 
 %% Umordnung der Zustände
 
