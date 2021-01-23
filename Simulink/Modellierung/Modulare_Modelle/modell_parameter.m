@@ -39,23 +39,8 @@ C_1 = C;
 transfunc.Y_1_numer = [param.k_AWG_K * param.u_weight];
 transfunc.Y_1_denom = [1, 1/param.T_K 0];
 
-transfunc.Y_3_pregain = param.u_weight/(param.T_K*param.L_0^2);
-transfunc.Y_3_numer = transfunc.Y_3_pregain*[-param.T_K*param.L_0, 1-param.L_0];
-transfunc.Y_3_denom = [1, 1/param.T_K, 9.81/param.L_0, 9.81/(param.T_K*param.L_0)];
-
-steps = 0.23:0.01:1.6;
-poles = zeros(size(steps, 1), 3);
-i = 1; 
-for L_i = steps
-    temp.pregain = param.u_weight/(param.T_K* L_i^2);
-    temp.numer = temp.pregain*[-param.T_K* L_i, 1- L_i];
-    temp.denom = [1, 1/param.T_K, 9.81/ L_i, 9.81/(param.T_K* L_i)];
-    
-    poles(i, :) = pole(tf(temp.numer, temp.denom));
-    i = i + 1;
-end
-
-
+transfunc.Y_3_numer = [-param.u_weight*param.T_K, 0];
+transfunc.Y_3_denom = [param.T_K, param.L_0, 9.81*param.T_K, 9.81];
 
 %% Input
 
