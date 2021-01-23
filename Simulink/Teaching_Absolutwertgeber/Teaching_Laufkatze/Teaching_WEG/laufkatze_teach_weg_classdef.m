@@ -1,4 +1,4 @@
-classdef laufkatze_teach_classdef < matlab.System
+classdef laufkatze_teach_weg_classdef < matlab.System
     % Motorsteuerung2 Skript zum automatisierten Teaching der Absolutwertdrehgeber
     %
     % Laufkatze bzw. Greifer muss sich zum Start ungef?hr in der Mitte befinden
