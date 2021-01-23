@@ -16,7 +16,7 @@ sys = system;
 
 % Kovarianz
 matR_gross = 1; % Kovarianzmatrix Ausgangsrauschen % TODO
-matQ_gross = 1; % Kovarianzmatrix Eingangsrauschen % TODO
+matQ_gross = 50; % Kovarianzmatrix Eingangsrauschen % TODO
 
 % Eingangsrauschen
 % Annahme: wird bei der Übertragung der Solldrehzahl von der dSpace Box zum
