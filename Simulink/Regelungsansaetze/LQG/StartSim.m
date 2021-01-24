@@ -2,7 +2,7 @@ clear all
 
 %% Parameters
 
-L_0 = 0.6;
+L_0 = 0.5;
 x_0 = 1.3;
 phi_0 = 0;
 g = 9.81;
@@ -17,7 +17,7 @@ ue2 = 3;
 
 %% Linearized System
 
-L=1.3;
+L=0.5;
 
 %Laufkatze
 a22 = -1/T1;
@@ -42,7 +42,7 @@ C2=[1 0];
 D2=0;
 
 %Erweitertes System mit Stoermodell
-E = [0.5 1 0 0]';
+E = B1;
 A_s = 0;
 C_s = 1;
 
@@ -53,13 +53,28 @@ Bk = [B1; zeros(1,size(B1,2))];
 
 Ck = [C1 zeros(size(C1,1),1)];
 
+%G = Bk + [0; 0; 0; 0; Bk(2)];
+
+%% berechne Kalman-Filter
+
+% Kovarianz
+R = diag([1 45]); % Kovarianzmatrix Messrauschen
+Q = 30; % Kovarianzmatrix Systemrauschen
+
+
+G= Bk + [0; 0; 0; 0; Bk(2)];
+
+% berechne Kalman-Filter Matrix
+[P, ~, ~] = care(Ak', Ck', G*Q*G', R);
+Kk = P * Ck' / R;
+
 %% define the objective function
 disp('objective function')
 Q=[100 0 0 0;
     0 1 0 0;
     0  0 100 0;
     0  0 0 1];
-R=0.1;
+R=0.3;
 
 %% calculation of the solution of the riccati equation and the controller
 %% gain
