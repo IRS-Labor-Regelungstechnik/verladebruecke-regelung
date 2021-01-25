@@ -7,7 +7,7 @@
 %% Parameter
 
 % Für die Simulation und Berechnung des Kalman Filters verwendete Parameter:
-system.L = 0.4; % nur für Simulation benötigt
+system.L = 0.3; % nur für Simulation benötigt
 % PT1 Glied
 system.T_K = 0.03032;
 system.K_K = 1;
@@ -24,28 +24,39 @@ system.theta = theta_lb:1.64:theta_ub;
 
 %% Polbereich
 
-% 1.Opt
+% 1.Opt (rot)
 % funktioniert sicher für große Länge (für alle Längen (!?))
+% Pol bei L=0.05: -2.568+-j16.34
+% Pol bei L=0.01: -7.312+-j42.11
 a_P = 0.1;
 b_P = 0.6;
 R_P = 43;
 
 P = 100;
 
-% Alternative Regler:
-% 2.Opt
+% Alternativer Regler: mit theta_lb 0.05
+% 2.Opt (zwischen grün und lila)
 % a_P = 0.4;
 % b_P = 1.0;
 % R_P = 43;
 % 
 % P = 10;
 
-% 3.Opt mit theta_lb 0.05
-% a_P = 0.4;
+% 3. Opt
+% Wie 1. allerdings alle EW etwas nach rechts verschoben
+% a_P = 0.1;
 % b_P = 0.6;
-% R_P = 43;
+% R_P = 40;
 % 
-% P = 10;
+% P = 1000;
+
+% 4. Opt
+% ähnlich zu 1. allerdings nach links verschoben
+% a_P = 0.15;
+% b_P = 0.6;
+% R_P = 60;
+% 
+% P = 1000;
 
 % Startwert für K
 % 1. Opt
@@ -56,8 +67,12 @@ K_0 = [-1.776790781740962e+02 -7.690174526049406 -18.455941343061674;
 % K_0 = [-5.056767567669567 -33.307418571680730 -9.266543917421830;
 %     11.764154350160240 -5.609845627304680 4.536682973988588];
 % 3. Opt
-% K_0 = [-1.773568730237216e+02 -14.115608919457802 -20.476130357627200;
-%     1.236811504949734e+02 12.323348089922725 13.359887005868284];
+% K_0 = [-1.338388545504427e+02 -5.995525251080967 -10.450759757394980;
+%     1.206979998483719e+02 2.276826484979793 8.475572221576634];
+% 4. Opt
+% K_0 = [-1.783545141511604e+02 -17.776512482941925 -17.310662990411030;
+%     1.236379468108141e+02 8.353049698429627 11.369026124583993];
+
 %% Optimierung
 
 x0(1) = K_0(1,1);

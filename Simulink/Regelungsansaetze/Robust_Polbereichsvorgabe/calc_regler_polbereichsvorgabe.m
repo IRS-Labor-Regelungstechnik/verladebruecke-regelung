@@ -7,7 +7,7 @@
 %% Parameter
 
 % Für die Simulation und Berechnung des Kalman Filters verwendete Parameter:
-system.L = 0.4;
+system.L = 0.15;
 % PT1 Glied
 system.T_K = 0.03032;
 system.K_K = 1;
@@ -20,11 +20,11 @@ system.g = 9.81; % Erdbeschleunigung
 theta_lb = 0.15; % L upper bound
 theta_ub = 1.65; % L lower bound
 
-system.theta = theta_lb:1.6:theta_ub;
+system.theta = theta_lb:1.5:theta_ub;
 
 %% Polbereich
 
-% 1.Opt
+% 1.Opt (lila)
 a_P = 0.6;
 b_P = 1.0;
 R_P = 43;
