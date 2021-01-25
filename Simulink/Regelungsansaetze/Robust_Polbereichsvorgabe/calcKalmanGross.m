@@ -15,7 +15,7 @@ sys = system;
 %% berechne Kalman-Filter
 
 % Kovarianz
-matR_gross = 1; % Kovarianzmatrix Ausgangsrauschen % TODO
+matR_gross = [1 0; 0 1]; % Kovarianzmatrix Ausgangsrauschen % TODO
 matQ_gross = 50; % Kovarianzmatrix Eingangsrauschen % TODO
 
 % Eingangsrauschen
