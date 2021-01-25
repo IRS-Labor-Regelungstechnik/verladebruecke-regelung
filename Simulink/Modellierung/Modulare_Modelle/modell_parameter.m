@@ -35,10 +35,13 @@ B = @(L_0) [0;
 C = [param.k_AWG_K, 0,0 ,0;
      0, 0, 360/(2*pi), 0];
 
+% L_0 = 0.5m
+A_05 = A(0.5);
+B_05 = B(0.5);
+
 % L_0 = 1m
 A_1 = A(1);
 B_1 = B(1);
-C_1 = C;
 
 transfunc.Y_1_numer = [param.k_AWG_K * param.eta_K];
 transfunc.Y_1_denom = [1, 1/param.T_K 0];
