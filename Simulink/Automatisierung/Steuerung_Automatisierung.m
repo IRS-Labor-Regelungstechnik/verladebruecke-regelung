@@ -16,9 +16,12 @@ classdef Steuerung_Automatisierung < matlab.System
         % Total drivable rail length, in cm
         total_rail_length = 135.8 + 118.2; 
         
+        init_x_pos = 127;  %cm, for start and finish positioning
+        init_y_pos = 10;  %cm
+        
         % Gripper measurements
-        gripper_base_to_ground = 163;  %cm
-        min_gripper_dist_to_ground = 2.5;  %cm        
+        gripper_max_length = 137.5;  %cm
+        min_gripper_to_ground = 2.5;  %cm        
         
         % A position is considered reached if ...
         % the measured position is within this many cm from the target ...
@@ -44,11 +47,6 @@ classdef Steuerung_Automatisierung < matlab.System
         
         % When determining midpoints, add this height to the box_height
         add_height_to_midpoints = 3;  %cm
-
-        % mV-per-cm factor of the horizontal absolute rotary encoder 
-        horiz_abs_rot_enc_factor = 39.37; 
-        % mV-per-cm factor of the vertical absolute rotary encoder 
-        vert_abs_rot_enc_factor = 72.73;
     end
 
     properties(DiscreteState)
@@ -69,8 +67,8 @@ classdef Steuerung_Automatisierung < matlab.System
         vert_setpoint
 
         % For both processes
-        is_positioned
-        do_positioning
+        start_pos_reached
+        final_pos_reached
     end
 
     % Pre-computed constants
@@ -94,14 +92,17 @@ classdef Steuerung_Automatisierung < matlab.System
             obj.time0 = 0;
             
             % For main automation process
+            
+            
+            
             obj.box_x_pos = (obj.box_sequence - 1) * obj.distance_between_boxes ...
                 + obj.first_box_to_baseline - obj.baseline_to_left_switch ...
                 - obj.box_width/2;
-            obj.box_y_pos = (ones(size(obj.box_x_pos)) * obj.gripper_base_to_ground) - obj.box_height + obj.min_gripper_dist_to_ground;
+            obj.box_y_pos = (ones(size(obj.box_x_pos)) * obj.gripper_max_length) - obj.box_height + obj.min_gripper_to_ground;
             
             obj.goal_x_pos = ones(size(obj.box_x_pos)) * (obj.first_box_to_baseline + 4*obj.distance_between_boxes + 121.4);
-            obj.goal_y_pos = (ones(size(obj.box_x_pos)) * obj.gripper_base_to_ground) - ((1:size(obj.box_x_pos, 2)) * obj.box_height) ...
-                + obj.min_gripper_dist_to_ground;
+            obj.goal_y_pos = (ones(size(obj.box_x_pos)) * obj.gripper_max_length) - ((1:size(obj.box_x_pos, 2)) * obj.box_height) ...
+                + obj.min_gripper_to_ground;
             
             obj.box_nr = 1;
             obj.magnet_on = false;
@@ -109,84 +110,77 @@ classdef Steuerung_Automatisierung < matlab.System
             obj.horiz_setpoint = 0;
             obj.vert_setpoint = 0;
             
-            % For both processes
-            obj.is_positioned = false;
-            obj.do_positioning = false;
+            obj.start_pos_reached = false;
+            obj.final_pos_reached = false;
         end
 
-        function [horiz_setpoint, vert_setpoint, magnet_on, do_positioning, control_enable] = ... 
-                stepImpl(obj, horiz_value, horiz_speed, vert_value, vert_speed, angle, angle_speed, ... 
-                         positioning_finished, Clock)
+        function [horiz_setpoint, vert_setpoint, magnet_on, control_enable] = ... 
+                stepImpl(obj, horiz_pos, horiz_speed, vert_pos, vert_speed, angle, angle_speed, ... 
+                         Clock, k_AWG_K, k_AWG_G)
+            
+            k_AWG_K = k_AWG_K / 100;  % from V/m to V/cm
+            k_AWG_G = k_AWG_G / 100;
+            
+            horiz_pos = horiz_pos / k_AWG_K;
+            horiz_speed = horiz_speed / k_AWG_K;
+            vert_pos = vert_pos / k_AWG_G;
+            vert_speed = vert_speed / k_AWG_G;
+            
             % Implement algorithm. Calculate y as a function of input u and
             % discrete states.
-            control_enable = Clock - obj.time0 > obj.start_time; 
-            if control_enable
-                if ~obj.is_positioned
-                    if obj.do_positioning && positioning_finished
-                        obj.is_positioned = true;
-                        obj.do_positioning = false;
+            control_enable = Clock - obj.time0 > obj.start_time;  
+            if control_enable && ~obj.final_pos_reached
+                if ~obj.start_pos_reached || obj.box_nr > size(obj.box_x_pos, 2)
+                    obj.horiz_setpoint = obj.init_x_pos;
+                    obj.vert_setpoint = obj.init_y_pos;
+                else
+                    if obj.magnet_on
+                        if obj.add_midpoints && ~obj.midpoint_reached
+                            obj.vert_setpoint = obj.box_y_pos(obj.box_nr) - (obj.box_height + obj.add_height_to_midpoints);
+                        else
+                            obj.horiz_setpoint = obj.goal_x_pos(obj.box_nr);
+                            obj.vert_setpoint = obj.goal_y_pos(obj.box_nr);
+                        end
                     else
-                        obj.do_positioning = true;
+                        obj.horiz_setpoint = obj.box_x_pos(obj.box_nr);
+                        obj.vert_setpoint = obj.box_y_pos(obj.box_nr);
                     end
-                else 
-                    % Main automation part, initialization is finished! 
-                    if obj.box_nr <= size(obj.box_x_pos, 2)
+                end
+
+                % Condition for reaching setpoint, values are in mV
+                if abs(obj.horiz_setpoint - horiz_pos) < obj.horiz_precision * k_AWG_K && ...
+                        abs(obj.vert_setpoint - vert_pos) < obj.vert_precision * k_AWG_G && ...
+                        horiz_speed < obj.horiz_speed_thres * k_AWG_K && ... 
+                        vert_speed < obj.vert_speed_thres * k_AWG_G && ...
+                        abs(angle) < obj.angle_thres && ...
+                        angle_speed < obj.angle_speed_thres
+
+                    if ~obj.start_pos_reached
+                        obj.start_pos_reached = true; 
+                    elseif obj.box_nr > size(obj.box_x_pos, 2) && ~obj.final_pos_reached
+                        obj.final_pos_reached = true;
+                    else
                         if obj.magnet_on
                             if obj.add_midpoints && ~obj.midpoint_reached
-                                obj.vert_setpoint = obj.vert_abs_rot_enc_factor * (obj.box_y_pos(obj.box_nr) - (obj.box_height + obj.add_height_to_midpoints));
+                                obj.midpoint_reached = true;
                             else
-                                obj.horiz_setpoint = obj.horiz_abs_rot_enc_factor * obj.goal_x_pos(obj.box_nr);
-                                obj.vert_setpoint = obj.vert_abs_rot_enc_factor * obj.goal_y_pos(obj.box_nr);
+                                % Gripper is at goal position
+                                obj.magnet_on = false;
+                                obj.midpoint_reached = false;
+                                obj.box_nr = obj.box_nr + 1;
                             end
                         else
-                            obj.horiz_setpoint = obj.horiz_abs_rot_enc_factor * obj.box_x_pos(obj.box_nr);
-                            obj.vert_setpoint = obj.vert_abs_rot_enc_factor * obj.box_y_pos(obj.box_nr);
-                        end
-
-                        % Condition for reaching setpoint, values are in mV
-                        if abs(obj.horiz_setpoint - horiz_value) < obj.horiz_precision * obj.horiz_abs_rot_enc_factor && ...
-                                abs(obj.vert_setpoint - vert_value) < obj.vert_precision * obj.vert_abs_rot_enc_factor && ...
-                                horiz_speed < obj.horiz_speed_thres * obj.horiz_abs_rot_enc_factor && ... 
-                                vert_speed < obj.vert_speed_thres * obj.vert_abs_rot_enc_factor && ...
-                                abs(angle) < obj.angle_thres && ...
-                                angle_speed < obj.angle_speed_thres
-
-                            if obj.magnet_on
-                                if obj.add_midpoints && ~obj.midpoint_reached
-                                    obj.midpoint_reached = true;
-                                else
-                                    % Gripper is at goal position
-                                    obj.magnet_on = false;
-                                    obj.midpoint_reached = false;
-                                    obj.box_nr = obj.box_nr + 1;
-                                end
-                            else
-                                % Gripper is at box
-                                obj.magnet_on = true;
-                            end 
-                        end
-                    else
-                        % All boxes have been moved
-                        obj.horiz_setpoint = 0;
-                        obj.vert_setpoint = 0;
-                        if (~obj.is_positioned)
-                            if (obj.do_positioning && positioning_finished)
-                                obj.is_positioned = true;
-                                obj.do_positioning = false;
-                            else
-                                obj.do_positioning = true;
-                            end
-                        end
+                            % Gripper is at box
+                            obj.magnet_on = true;
+                        end 
                     end
                 end
             end
             
-            
-            do_positioning = obj.do_positioning; 
             magnet_on = obj.magnet_on;
             
-            horiz_setpoint = obj.horiz_setpoint;
-            vert_setpoint = obj.vert_setpoint; 
+            horiz_setpoint = k_AWG_K * obj.horiz_setpoint;
+            vert_setpoint = k_AWG_G * obj.vert_setpoint; 
             
         end
 

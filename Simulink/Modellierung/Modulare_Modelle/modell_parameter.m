@@ -16,7 +16,11 @@ param.d = 0.02;  % Daempfung
 param.k_AWG_K = 0.3937; %V/m
 param.k_AWG_G = 0.7273; %V/m
 
-param.u_weight = 2*pi*param.r_K*param.K_K*param.ue_dreh/(param.ue_K*param.T_K);
+param.eta_K = 2*pi*param.r_K*param.K_K*param.ue_dreh/(param.ue_K*param.T_K);
+
+% Automatisierung
+box_sequence = 1:5;
+start_time = 5;
 
 st1 = 1;  % for lin_modell_test and nl_modell_test
 
@@ -25,45 +29,40 @@ A = @(L_0) [0, 1, 0, 0;
             0, 0, 0, 1;
             0, 1/(param.T_K*L_0), -9.81/L_0, 0];
 B = @(L_0) [0; 
-            param.u_weight; 
+            param.eta_K; 
             0; 
-            -param.u_weight/param.L_0];
+            -param.eta_K/param.L_0];
 C = [param.k_AWG_K, 0,0 ,0;
-     0, 0, 1, 0];
+     0, 0, 360/(2*pi), 0];
 
 % L_0 = 1m
 A_1 = A(1);
 B_1 = B(1);
 C_1 = C;
 
-transfunc.Y_1_numer = [param.k_AWG_K * param.u_weight];
+transfunc.Y_1_numer = [param.k_AWG_K * param.eta_K];
 transfunc.Y_1_denom = [1, 1/param.T_K 0];
+sys_1 = tf(transfunc.Y_1_numer, transfunc.Y_1_denom);
+% bode(sys_1)
 
-transfunc.Y_3_numer = [-param.u_weight*param.T_K, 0];
+% sisotool
+% sisotool('bode',G);
+
+transfunc.Y_3_numer = [-param.eta_K*param.T_K, 0];
 transfunc.Y_3_denom = [param.T_K, param.L_0, 9.81*param.T_K, 9.81];
+sys_3 = tf(transfunc.Y_3_numer, transfunc.Y_3_denom);
+% bode(sys_3)
 
-%% Input
+K_PK = 1;
+K_IK = 1;
+K_DK = 1;
+K_filterK = 1/200;
+K_PG = 1;
+K_DG = 1;
+K_filterG = 1/200;
+R_1 = pid(K_PK, K_IK, K_DK, 1);
+R_2 = pid(K_PG, 0, K_DG);
 
-% %Spannung
-% assignin('base', 'u1',0.1)
-% assignin('base', 'u2',0.1)
-% %Start
-% assignin('base', 't01',0)
-% assignin('base', 't02',5)
-% %Ende
-% assignin('base', 't1',5)
-% assignin('base', 't2',8)
-% 
-% %% Nonlinear Model
-% 
-% assignin('base', 'T1',T1)
-% assignin('base', 'r1',r1)
-% assignin('base', 'ue1',ue1)
-% 
-% assignin('base', 'T2',T2)
-% assignin('base', 'r2',r2)
-% assignin('base', 'ue2',ue2)
-% 
-% assignin('base', 'L_0',L_0)
-% assignin('base', 'x_0',x_0)
-% assignin('base', 'phi_0',phi_0)
+% figure;bode(sys_1,'b--',sys_3,'b', sys_1 * R_1, 'r', sys_3 * R_1, 'r--');grid;
+% legend('Laufkatze','Winkel');
+
