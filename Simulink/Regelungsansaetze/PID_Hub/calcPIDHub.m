@@ -1,4 +1,4 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % Berechnung PID-Regler Hub
 %
@@ -12,10 +12,10 @@ systemhub.T_G = 0.0247;
 systemhub.R = 0.021975;
 systemhub.ue = 3;
 
-k_AWG = 1/1.375;
-ue_dreh = 750;
+systemhub.k_AWG = 1/1.375;
+systemhub.ue_dreh = 75;
 
-eta = pi * systemhub.R * systemhub.K_G * ue_dreh / (systemhub.ue * systemhub.T_G);
+systemhub.eta = pi * systemhub.R * systemhub.K_G * systemhub.ue_dreh / (systemhub.ue * systemhub.T_G);
 
 %% Berechnung Regler
 % bewährte Parameter
@@ -29,7 +29,7 @@ phasenreserve = 65 * (2*pi/360);
 %a = (1 + sin(phasenreserve)) / cos(phasenreserve);
 a=2;
 
-K_s = k_AWG * eta * systemhub.T_G;
+K_s = systemhub.k_AWG * systemhub.eta * systemhub.T_G;
 T_E = systemhub.T_G;
 T_0 = 1;
 
