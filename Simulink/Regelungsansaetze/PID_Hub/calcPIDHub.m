@@ -22,7 +22,6 @@ systemhub.eta = pi * systemhub.R * systemhub.K_G * systemhub.ue_dreh / (systemhu
 % P: 1.0457392449245
 % I: 0.44033447408914
 
-
 % Auslegung nach Symmetrischem Optimum
 
 phasenreserve = 65 * (2*pi/360);
