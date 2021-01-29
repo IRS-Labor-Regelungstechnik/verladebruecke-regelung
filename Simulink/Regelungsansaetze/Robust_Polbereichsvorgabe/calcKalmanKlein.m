@@ -19,8 +19,8 @@ sys = system;
 %% berechne Kalman-Filter
 
 % Kovarianz
-matR = 1; % Kovarianzmatrix Ausgangsrauschen % TODO
-matQ = 50; % Kovarianzmatrix Eingangsrauschen % TODO
+matR = 1;%1 % Kovarianzmatrix Ausgangsrauschen % TODO
+matQ = 5;%50 % Kovarianzmatrix Eingangsrauschen % TODO
 
 % Eingangsrauschen
 % Annahme: wird bei der Übertragung der Solldrehzahl von der dSpace Box zum

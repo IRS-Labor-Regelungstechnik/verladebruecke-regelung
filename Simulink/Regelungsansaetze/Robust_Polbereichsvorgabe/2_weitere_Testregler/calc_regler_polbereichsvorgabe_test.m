@@ -7,7 +7,7 @@
 %% Parameter
 
 % Für die Simulation und Berechnung des Kalman Filters verwendete Parameter:
-system.L = 0.5;
+system.L = 1.5;
 % PT1 Glied
 system.T_K = 0.03032;
 system.K_K = 1;
@@ -27,10 +27,11 @@ system.theta = theta_lb:1.6:theta_ub;
 % Regler:
 % lb = 0.05:
 
-% (?) (gelb)
+% (-) (gelb)
 % geringe Dämpfung
 % Imaginärteil geht Richtung neg. Realteil sehr schnell nach außen
-% schwingt minimal (auch mit swrl?)
+% schwingt stark ohne swrl
+% schwingt minimal auch mit swrl
 a_P = 0.6;
 b_P = 10.0;
 R_P = 50;
@@ -40,7 +41,7 @@ P = 10;
 K_0 = [-8.653076743157850 -10.928242148565472 -16.734418626342208;
     10.714322278350178 -13.482362097801504 6.476553443575402];
 
-% (-) (grün)
+% (-) (grün) -> mit doppelter RL Rückführung testen
 % ähnlich zu blau geht allerdings schon früher nach außen und ist davor im
 % vergleich zu blau nicht so nah an der Re-Achse
 % - schwingt deutlich ohne swrl
@@ -54,7 +55,9 @@ K_0 = [-8.653076743157850 -10.928242148565472 -16.734418626342208;
 % K_0 = [-8.079414624883754 -21.840859387736668 -11.390009275798256;
 %     11.419213199142842 -4.728410602463830 4.247772004997906];
 
-% (?) (zwischen grün und lila)
+% (-) (zwischen grün und lila) -> mit doppelter RL Rückführung testen (sehr geringe Überschwinger)
+% schwingt ohne swrl deutlich
+% schwingt auch mit swrl
 % a_P = 0.4;
 % b_P = 1.0;
 % R_P = 43;
