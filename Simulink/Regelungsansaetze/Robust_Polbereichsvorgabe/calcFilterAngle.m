@@ -11,7 +11,9 @@ L_min = 0.05; % m
 T = 2*pi*sqrt(L_min / 9.81); % sek
 
 order = 1;
-cutofffreq = 1/T; % in Hz
+cutofffreq = (1/T) * 10; % in Hz
+% für geringe Phasenverschiebung wird als cutoff die 10 fache Frequenz der
+% höchstfrequenten auftretenden Schwingung verwendet
 
 %% berechne Tierpassfilter
 

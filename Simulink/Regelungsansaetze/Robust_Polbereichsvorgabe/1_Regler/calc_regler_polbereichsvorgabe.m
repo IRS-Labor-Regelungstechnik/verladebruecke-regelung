@@ -7,7 +7,7 @@
 %% Parameter
 
 % Für die Simulation und Berechnung des Kalman Filters verwendete Parameter:
-system.L = 0.5;
+system.L = 0.05;
 % PT1 Glied
 system.T_K = 0.03032;
 system.K_K = 1;
