@@ -21,11 +21,18 @@ classdef Steuerung_Automatisierung < matlab.System
     end
 
     properties(DiscreteState)
-        time0
+        rest_start
         
         x
         y
         mag
+        rest
+        x_tol
+        x_sp_tol
+        y_tol
+        y_sp_tol
+        ang_tol
+        ang_sp_tol
         point_nr
                 
         magnet_on
@@ -50,13 +57,14 @@ classdef Steuerung_Automatisierung < matlab.System
         %% Common functions        
         function setupImpl(obj)
             % Perform one-time calculations, such as computing constants
-            obj.time0 = 0;
+            obj.rest_start = 0;
             
             nr_points = 50;
 
             obj.x = zeros(1, nr_points);
             obj.y = zeros(1, nr_points);
             obj.mag = zeros(1, nr_points);
+            obj.rest = zeros(1, nr_points);
             obj.x_tol = zeros(1, nr_points);
             obj.x_sp_tol = zeros(1, nr_points);
             obj.y_tol = zeros(1, nr_points);
@@ -64,7 +72,7 @@ classdef Steuerung_Automatisierung < matlab.System
             obj.ang_tol = zeros(1, nr_points);
             obj.ang_sp_tol = zeros(1, nr_points);
             
-            [obj.x, obj.y, obj.mag, obj.x_tol, obj.x_sp_tol, ...
+            [obj.x, obj.y, obj.mag, obj.rest, obj.x_tol, obj.x_sp_tol, ...
                 obj.y_tol, obj.y_sp_tol, obj.ang_tol, obj.ang_sp_tol] = ...
                 automation_setpoints(obj.param, obj.add_midpoints, ...
                                      obj.midpoint_height, nr_points);
@@ -77,14 +85,14 @@ classdef Steuerung_Automatisierung < matlab.System
 
         function [horiz_setpoint, vert_setpoint, magnet_on, control_enable, ...
                   x_under_thres, x_speed_under_thres, y_under_thres, ...
-                  y_speed_under_thres, angle_under_thres, angle_speed_under_thres, next_box] = ... 
+                  y_speed_under_thres, angle_under_thres, angle_speed_under_thres] = ... 
                 stepImpl(obj, horiz_pos, horiz_speed, vert_pos, vert_speed, angle, angle_speed, ... 
                          Clock)
             
-            horiz_pos = horiz_pos / obj.param.k_AWG_K;
-            horiz_speed = horiz_speed / obj.param.k_AWG_K;
-            vert_pos = vert_pos / obj.param.k_AWG_G;
-            vert_speed = vert_speed / obj.param.k_AWG_G;
+            horiz_pos = horiz_pos / (obj.param.k_AWG_K / 100);
+            horiz_speed = horiz_speed / (obj.param.k_AWG_K / 100);
+            vert_pos = vert_pos / (obj.param.k_AWG_G / 100);
+            vert_speed = vert_speed / (obj.param.k_AWG_G / 100);
             
             x_under_thres = false;
             x_speed_under_thres = false;
@@ -95,7 +103,7 @@ classdef Steuerung_Automatisierung < matlab.System
             
             % Implement algorithm. Calculate y as a function of input u and
             % discrete states.
-            control_enable = Clock - obj.time0 > obj.start_time;  
+            control_enable = Clock > obj.start_time;  
             if control_enable && obj.x(obj.point_nr) ~= 0 && obj.y(obj.point_nr) ~= 0
                 obj.horiz_setpoint = obj.x(obj.point_nr);
                 obj.vert_setpoint = obj.y(obj.point_nr);
@@ -112,13 +120,20 @@ classdef Steuerung_Automatisierung < matlab.System
                          && y_speed_under_thres && angle_under_thres && angle_speed_under_thres
                         
                     obj.magnet_on = obj.mag(obj.point_nr);
-                    obj.point_nr = obj.point_nr + 1;
+
+                    if obj.rest_start == 0
+                        obj.rest_start = Clock;
+                    end
+                    if Clock - obj.rest_start >= obj.rest(obj.point_nr)
+                        obj.rest_start = 0;
+                        obj.point_nr = obj.point_nr + 1;
+                    end
                 end
             end
             
             magnet_on = obj.magnet_on;
-            horiz_setpoint = obj.param.k_AWG_K * obj.horiz_setpoint;
-            vert_setpoint = obj.param.k_AWG_G * obj.vert_setpoint; 
+            horiz_setpoint = (obj.param.k_AWG_K  / 100) * obj.horiz_setpoint;
+            vert_setpoint = (obj.param.k_AWG_G / 100) * obj.vert_setpoint; 
         end
 
         function resetImpl(obj)
@@ -160,7 +175,7 @@ classdef Steuerung_Automatisierung < matlab.System
             groups = matlab.system.display.SectionGroup(...
               'Title','General',...
               'PropertyList',{'box_sequence', 'start_time', 'add_midpoints', 'midpoint_height', ...
-              'k_AWG_K', 'k_AWG_G', 'param'});
+              'param'});
         end
     end
 end

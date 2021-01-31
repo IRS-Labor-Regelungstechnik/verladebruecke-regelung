@@ -14,39 +14,37 @@ function [x,y,mag, rest, ...
     
     x = zeros(1, max_points);
     y = zeros(1, max_points);
-    mag = zeros(1, max_points);
-    rest = zeros(1, max_points);
-    horiz_pos_tol = zeros(1, max_points);
-    horiz_vel_tol = zeros(1, max_points);
-    vert_pos_tol = zeros(1, max_points);
-    vert_vel_tol = zeros(1, max_points);
-    angle_tol = zeros(1, max_points);
-    angle_vel_tol = zeros(1, max_points);
+    mag = zeros(1, max_points);  % State of magnet after reaching position
+    rest = zeros(1, max_points); % Seconds to rest after reaching position
+    
+    default_pos_tol = 5;  % cm or deg
+    default_vel_tol = 5;  % cm/s or deg/s
+    horiz_pos_tol = ones(1, max_points) * default_pos_tol; % All pos tolerances are in cm
+    horiz_vel_tol = ones(1, max_points) * default_vel_tol; % All vel tolerances are in cm/s
+    vert_pos_tol = ones(1, max_points) * default_pos_tol;
+    vert_vel_tol = ones(1, max_points) * default_vel_tol;
+    angle_tol = ones(1, max_points) * default_pos_tol;     % deg
+    angle_vel_tol = ones(1, max_points) * default_vel_tol; % deg/s
+    
     k = 1;
     
     % Start position
     x(k) = p.init_x_pos;
     y(k) = p.init_y_pos;
     mag(k) = 0;
-    rest(k) = 2;  % Seconds to rest after reaching
-    horiz_pos_tol(k) = 5;  % All pos tolerances are in cm
-    horiz_vel_tol(k) = 5;  % cm/s
-    vert_pos_tol(k) = 5;
-    vert_vel_tol(k) = 5;
-    angle_tol(k) = 5;      % deg
-    angle_vel_tol(k) = 5;  % deg/s
+    rest(k) = 2;  
+%     horiz_pos_tol(k) = 5;  
+%     horiz_vel_tol(k) = 5;  
+%     vert_pos_tol(k) = 5;
+%     vert_vel_tol(k) = 5;
+%     angle_tol(k) = 5;      
+%     angle_vel_tol(k) = 5;  
     k = k+1;
     
     x(k) = box_x_pos(1);
     y(k) = p.init_y_pos;
     mag(k) = 0;
     rest(k) = 0;
-    horiz_pos_tol(k) = 5;
-    horiz_vel_tol(k) = 5;
-    vert_pos_tol(k) = 5;
-    vert_vel_tol(k) = 5;
-    angle_tol(k) = 5;
-    angle_vel_tol(k) = 5;
     k = k+1;
     
     for i = 1:size(box_x_pos, 2)
@@ -61,12 +59,6 @@ function [x,y,mag, rest, ...
         y(k) = box_y_pos(i);
         mag(k) = 1;
         rest(k) = 1;
-        horiz_pos_tol(k) = 5;
-        horiz_vel_tol(k) = 5;
-        vert_pos_tol(k) = 5;
-        vert_vel_tol(k) = 5;
-        angle_tol(k) = 5;
-        angle_vel_tol(k) = 5;
         k = k+1;
         
         if add_midpoints
@@ -75,12 +67,6 @@ function [x,y,mag, rest, ...
             y(k) = intermediate_height;
             mag(k) = 1;
             rest(k) = 0;
-            horiz_pos_tol(k) = 5;
-            horiz_vel_tol(k) = 5;
-            vert_pos_tol(k) = 5;
-            vert_vel_tol(k) = 5;
-            angle_tol(k) = 5;
-            angle_vel_tol(k) = 5;
             k = k+1;
 
             % Second midpoint, over goal_x
@@ -88,12 +74,6 @@ function [x,y,mag, rest, ...
             y(k) = intermediate_height;
             mag(k) = 1;
             rest(k) = 0;
-            horiz_pos_tol(k) = 5;
-            horiz_vel_tol(k) = 5;
-            vert_pos_tol(k) = 5;
-            vert_vel_tol(k) = 5;
-            angle_tol(k) = 5;
-            angle_vel_tol(k) = 5;
             k = k+1;
         end
 
@@ -102,12 +82,6 @@ function [x,y,mag, rest, ...
         y(k) = goal_y_pos(i);
         mag(k) = 0;
         rest(k) = 1;
-        horiz_pos_tol(k) = 5;
-        horiz_vel_tol(k) = 5;
-        vert_pos_tol(k) = 5;
-        vert_vel_tol(k) = 5;
-        angle_tol(k) = 5;
-        angle_vel_tol(k) = 5;
         k = k+1;
 
         if add_midpoints
@@ -116,12 +90,6 @@ function [x,y,mag, rest, ...
             y(k) = intermediate_height;
             mag(k) = 0;
             rest(k) = 0;
-            horiz_pos_tol(k) = 5;
-            horiz_vel_tol(k) = 5;
-            vert_pos_tol(k) = 5;
-            vert_vel_tol(k) = 5;
-            angle_tol(k) = 5;
-            angle_vel_tol(k) = 5;
             k = k+1;
 
             % Fourth midpoint, over box_x+1
@@ -133,12 +101,6 @@ function [x,y,mag, rest, ...
             y(k) = intermediate_height;
             mag(k) = 0;
             rest(k) = 0;
-            horiz_pos_tol(k) = 5;
-            horiz_vel_tol(k) = 5;
-            vert_pos_tol(k) = 5;
-            vert_vel_tol(k) = 5;
-            angle_tol(k) = 5;
-            angle_vel_tol(k) = 5;
             k = k+1;
         end
     end
@@ -146,10 +108,4 @@ function [x,y,mag, rest, ...
     y(k) = p.init_y_pos;
     mag(k) = 0;
     rest(k) = 0;
-    horiz_pos_tol(k) = 5;
-    horiz_vel_tol(k) = 5;
-    vert_pos_tol(k) = 5;
-    vert_vel_tol(k) = 5;
-    angle_tol(k) = 5;
-    angle_vel_tol(k) = 5;
 end 
