@@ -12,30 +12,12 @@ classdef Steuerung_Automatisierung < matlab.System
         
         % Gripper length for midpoints. Set to -1 for max length that prevents collision with other boxes
         midpoint_height = -1;
-        
-        % Umrechnungsfaktor Weg [V/cm]
-        k_AWG_K = 0.003937;
-        
-        % Umrechnungsfaktor Hub [V/cm]
-        k_AWG_G = 0.007273
     end
 
     % Public, non-tunable properties
     properties(Nontunable)        
-        % A position is considered reached if ...
-        % the measured position is within this many cm from the target ...
-        horiz_precision = 5; 
-        vert_precision = 5;
-        angle_thres = 5;  % deg deviation from 180
-        % and the horiz, vert, and angular speeds are under a threshold, 
-        % in cm/sec and degrees/sec
-        horiz_speed_thres = 5;
-        vert_speed_thres = 5;
-        angle_speed_thres = 15;
-        
         % Parameter aus modell_parameter.m
         param = struct();
-        
     end
 
     properties(DiscreteState)
@@ -69,12 +51,23 @@ classdef Steuerung_Automatisierung < matlab.System
         function setupImpl(obj)
             % Perform one-time calculations, such as computing constants
             obj.time0 = 0;
-
-            obj.x = zeros(1, 50);
-            obj.y = zeros(1, 50);
-            obj.mag = zeros(1, 50);
             
-            [obj.x, obj.y, obj.mag] = automation_setpoints(obj.param, obj.add_midpoints, obj.midpoint_height, 50);
+            nr_points = 50;
+
+            obj.x = zeros(1, nr_points);
+            obj.y = zeros(1, nr_points);
+            obj.mag = zeros(1, nr_points);
+            obj.x_tol = zeros(1, nr_points);
+            obj.x_sp_tol = zeros(1, nr_points);
+            obj.y_tol = zeros(1, nr_points);
+            obj.y_sp_tol = zeros(1, nr_points);
+            obj.ang_tol = zeros(1, nr_points);
+            obj.ang_sp_tol = zeros(1, nr_points);
+            
+            [obj.x, obj.y, obj.mag, obj.x_tol, obj.x_sp_tol, ...
+                obj.y_tol, obj.y_sp_tol, obj.ang_tol, obj.ang_sp_tol] = ...
+                automation_setpoints(obj.param, obj.add_midpoints, ...
+                                     obj.midpoint_height, nr_points);
             
             obj.point_nr = 1;
             obj.magnet_on = 0;
@@ -84,14 +77,14 @@ classdef Steuerung_Automatisierung < matlab.System
 
         function [horiz_setpoint, vert_setpoint, magnet_on, control_enable, ...
                   x_under_thres, x_speed_under_thres, y_under_thres, ...
-                  y_speed_under_thres, angle_under_thres, angle_speed_under_thres] = ... 
+                  y_speed_under_thres, angle_under_thres, angle_speed_under_thres, next_box] = ... 
                 stepImpl(obj, horiz_pos, horiz_speed, vert_pos, vert_speed, angle, angle_speed, ... 
                          Clock)
             
-            horiz_pos = horiz_pos / obj.k_AWG_K;
-            horiz_speed = horiz_speed / obj.k_AWG_K;
-            vert_pos = vert_pos / obj.k_AWG_G;
-            vert_speed = vert_speed / obj.k_AWG_G;
+            horiz_pos = horiz_pos / obj.param.k_AWG_K;
+            horiz_speed = horiz_speed / obj.param.k_AWG_K;
+            vert_pos = vert_pos / obj.param.k_AWG_G;
+            vert_speed = vert_speed / obj.param.k_AWG_G;
             
             x_under_thres = false;
             x_speed_under_thres = false;
@@ -107,12 +100,12 @@ classdef Steuerung_Automatisierung < matlab.System
                 obj.horiz_setpoint = obj.x(obj.point_nr);
                 obj.vert_setpoint = obj.y(obj.point_nr);
 
-                x_under_thres = abs(obj.horiz_setpoint - horiz_pos) < obj.horiz_precision;
-                x_speed_under_thres = abs(horiz_speed) < obj.horiz_speed_thres;
-                y_under_thres = abs(obj.vert_setpoint - vert_pos) < obj.vert_precision; 
-                y_speed_under_thres = abs(vert_speed) < obj.vert_speed_thres;
-                angle_under_thres = abs(angle) < obj.angle_thres;
-                angle_speed_under_thres = abs(angle_speed) < obj.angle_speed_thres;
+                x_under_thres = abs(obj.horiz_setpoint - horiz_pos) < obj.x_tol(obj.point_nr);
+                x_speed_under_thres = abs(horiz_speed) < obj.x_sp_tol(obj.point_nr);
+                y_under_thres = abs(obj.vert_setpoint - vert_pos) < obj.y_tol(obj.point_nr); 
+                y_speed_under_thres = abs(vert_speed) < obj.y_sp_tol(obj.point_nr);
+                angle_under_thres = abs(angle) < obj.ang_tol(obj.point_nr);
+                angle_speed_under_thres = abs(angle_speed) < obj.ang_sp_tol(obj.point_nr);
             
                 % Condition for reaching setpoint, values are in mV
                 if x_under_thres && x_speed_under_thres && y_under_thres ...
@@ -124,8 +117,8 @@ classdef Steuerung_Automatisierung < matlab.System
             end
             
             magnet_on = obj.magnet_on;
-            horiz_setpoint = obj.k_AWG_K * obj.horiz_setpoint;
-            vert_setpoint = obj.k_AWG_G * obj.vert_setpoint; 
+            horiz_setpoint = obj.param.k_AWG_K * obj.horiz_setpoint;
+            vert_setpoint = obj.param.k_AWG_G * obj.vert_setpoint; 
         end
 
         function resetImpl(obj)
