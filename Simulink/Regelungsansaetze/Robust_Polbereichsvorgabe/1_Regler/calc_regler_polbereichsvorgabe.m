@@ -7,7 +7,7 @@
 %% Parameter
 
 % Für die Simulation und Berechnung des Kalman Filters verwendete Parameter:
-system.L = 0.05;
+system.L = 0.5;
 % PT1 Glied
 system.T_K = 0.03032;
 system.K_K = 1;
@@ -23,28 +23,6 @@ theta_ub = 1.65; % L lower bound
 system.theta = theta_lb:1.64:theta_ub;
 
 %% Polbereich
-
-% Regler:
-% lb = 0.05:
-
-% (blau)
-% lange große Dämpfung, ab bestimmter Seillänge nimmt Dämpfung schnell ab
-% Imaginärteil bleibt lange sehr klein geht dann allerdings ab bestimmtem
-% Punkt sehr schnell nach außen
-% - oberer teil schwingt etwas (bei kurzem Seil?, auch mit swrl?)
-% - oberer teil schwingt bei langem greifer deutlich (ohne swrl)
-% + mit swrl schwingt oberer Teil bei langem Seil nicht
-% a_P = 0.3;
-% b_P = 0.6;
-% R_P = 43;
-% 
-% P = 100;
-% 
-% K_0 = [-1.774209734276011e+02 -52.898729952739885 -19.337951891493990;
-%     1.237679583918260e+02 25.062015973534102 12.990233214631425];
-
-% Regler
-% lb = 0.01:
 
 % (rot)
 % + funktioniert für kleine / große Greiferlänge

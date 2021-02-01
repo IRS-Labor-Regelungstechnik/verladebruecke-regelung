@@ -17,5 +17,5 @@ cutofffreq = (1/T) * 10; % in Hz
 
 %% berechne Tierpassfilter
 
-[A_b_angel, B_b_angel, C_b_angel, D_b_angel] = butter(order, 2*pi*cutofffreq, 's');
+[A_b_angle, B_b_angle, C_b_angle, D_b_angle] = butter(order, 2*pi*cutofffreq, 's');
 
