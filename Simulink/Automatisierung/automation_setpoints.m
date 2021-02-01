@@ -1,4 +1,8 @@
-function [x,y,mag] = automation_setpoints(p, add_midpoints, midpoint_height, max_points)
+function [x,y,mag, rest, ...
+          horiz_pos_tol, horiz_vel_tol, vert_pos_tol, ...
+          vert_vel_tol, angle_tol, angle_vel_tol] = ...
+        automation_setpoints(p, add_midpoints, midpoint_height, max_points)
+    
     box_x_pos = (p.box_sequence - 1) * p.distance_between_boxes ...
         + p.first_box_to_baseline - p.baseline_to_left_switch ...
         - p.box_width/2;
@@ -10,17 +14,37 @@ function [x,y,mag] = automation_setpoints(p, add_midpoints, midpoint_height, max
     
     x = zeros(1, max_points);
     y = zeros(1, max_points);
-    mag = zeros(1, max_points);
+    mag = zeros(1, max_points);  % State of magnet after reaching position
+    rest = zeros(1, max_points); % Seconds to rest after reaching position
+    
+    default_pos_tol = 5;  % cm or deg
+    default_vel_tol = 5;  % cm/s or deg/s
+    horiz_pos_tol = ones(1, max_points) * default_pos_tol; % All pos tolerances are in cm
+    horiz_vel_tol = ones(1, max_points) * default_vel_tol; % All vel tolerances are in cm/s
+    vert_pos_tol = ones(1, max_points) * default_pos_tol;
+    vert_vel_tol = ones(1, max_points) * default_vel_tol;
+    angle_tol = ones(1, max_points) * default_pos_tol;     % deg
+    angle_vel_tol = ones(1, max_points) * default_vel_tol; % deg/s
+    
     k = 1;
     
+    % Start position
     x(k) = p.init_x_pos;
     y(k) = p.init_y_pos;
     mag(k) = 0;
+    rest(k) = 2;  
+%     horiz_pos_tol(k) = 5;  
+%     horiz_vel_tol(k) = 5;  
+%     vert_pos_tol(k) = 5;
+%     vert_vel_tol(k) = 5;
+%     angle_tol(k) = 5;      
+%     angle_vel_tol(k) = 5;  
     k = k+1;
     
     x(k) = box_x_pos(1);
     y(k) = p.init_y_pos;
-    mag(k) = 1;
+    mag(k) = 0;
+    rest(k) = 0;
     k = k+1;
     
     for i = 1:size(box_x_pos, 2)
@@ -34,6 +58,7 @@ function [x,y,mag] = automation_setpoints(p, add_midpoints, midpoint_height, max
         x(k) = box_x_pos(i);
         y(k) = box_y_pos(i);
         mag(k) = 1;
+        rest(k) = 1;
         k = k+1;
         
         if add_midpoints
@@ -41,12 +66,14 @@ function [x,y,mag] = automation_setpoints(p, add_midpoints, midpoint_height, max
             x(k) = box_x_pos(i);
             y(k) = intermediate_height;
             mag(k) = 1;
+            rest(k) = 0;
             k = k+1;
 
             % Second midpoint, over goal_x
             x(k) = goal_x_pos(i);
             y(k) = intermediate_height;
             mag(k) = 1;
+            rest(k) = 0;
             k = k+1;
         end
 
@@ -54,6 +81,7 @@ function [x,y,mag] = automation_setpoints(p, add_midpoints, midpoint_height, max
         x(k) = goal_x_pos(i);
         y(k) = goal_y_pos(i);
         mag(k) = 0;
+        rest(k) = 1;
         k = k+1;
 
         if add_midpoints
@@ -61,6 +89,7 @@ function [x,y,mag] = automation_setpoints(p, add_midpoints, midpoint_height, max
             x(k) = goal_x_pos(i);
             y(k) = intermediate_height;
             mag(k) = 0;
+            rest(k) = 0;
             k = k+1;
 
             % Fourth midpoint, over box_x+1
@@ -71,10 +100,12 @@ function [x,y,mag] = automation_setpoints(p, add_midpoints, midpoint_height, max
             end
             y(k) = intermediate_height;
             mag(k) = 0;
+            rest(k) = 0;
             k = k+1;
         end
     end
     x(k) = p.init_x_pos;
     y(k) = p.init_y_pos;
     mag(k) = 0;
+    rest(k) = 0;
 end 

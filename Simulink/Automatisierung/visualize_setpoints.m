@@ -21,7 +21,8 @@ draw_y = zeros(1, (last_index-1)*numpoints);
 for i = 2:last_index
     draw_x(((i-2)*numpoints+1):((i-1)*numpoints)) = linspace(x(i-1),x(i),numpoints);
     draw_y(((i-2)*numpoints+1):((i-1)*numpoints)) = linspace(y(i-1),y(i),numpoints);
+    plot(draw_x, draw_y)
 end
-figure()
+
 % pause(20);
-comet(draw_x, draw_y)
+% comet(draw_x, draw_y)

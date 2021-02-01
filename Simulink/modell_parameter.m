@@ -1,0 +1,55 @@
+%% Parameters
+param.L_0 = 1;  % Range: 0.23m - 1.605m
+param.init_x1 = 0;
+param.phi_0 = 0;
+param.T_K = 0.1;
+param.T_G = 0.05;
+param.K_K = 1;
+param.K_G = 1;
+param.r_K = 0.046; %m
+param.r_G = 0.05; %m
+param.ue_dreh = 750;
+param.ue_K = 6;
+param.ue_G = 3;
+param.d = 0.02;  % Daempfung
+
+param.g = 9.81;
+
+param.baseline_to_left_switch = 4.5;  %cm
+param.first_box_to_baseline = 22;  %cm
+param.distance_between_boxes = 20;  %cm
+param.goal_to_last_box = 121.4;  %cm
+
+
+param.box_height = 11.5;  %cm
+param.box_width = 11;  %cm
+param.box_lid_width = 14;  %cm
+
+% When determining midpoints, add this height to the box_height
+param.add_height_to_midpoints = 3;  %cm
+
+% Total drivable rail length, in cm
+param.total_rail_length = 135.8 + 118.2; 
+
+param.init_x_pos = 127;  %cm, for start and finish positioning
+param.init_y_pos = 10;  %cm
+
+% Gripper measurements
+param.gripper_max_length = 137.5;  %cm
+param.min_gripper_to_ground = 2.5;  %cm    
+
+param.k_AWG_K = 0.3937; %V/m
+param.k_AWG_G = 0.7273; %V/m
+
+system.currL = param.L_0;
+
+% mechanisches System:
+system.R = param.r_K; % Radius Rad
+system.ue = param.ue_K; % ?bersetzungsverh?ltnis
+system.g = 9.81; % Erdbeschleunigung
+
+% PT1 Glied
+system.T_K = param.T_K;
+system.K_K = param.K_K;
+
+param.eta_K = 2*pi*param.r_K*param.K_K*param.ue_dreh/(param.ue_K*param.T_K);
