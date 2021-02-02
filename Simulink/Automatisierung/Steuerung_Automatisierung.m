@@ -3,9 +3,6 @@ classdef Steuerung_Automatisierung < matlab.System
 
     % Public, tunable properties
     properties
-        % Sequence of boxes to pickup, numbered from left to right
-        box_sequence = [1, 2, 3, 4, 5]; 
-
         start_time = 30;
         % 'true' if midpoints should be given between end points 
         add_midpoints = true;
@@ -174,7 +171,7 @@ classdef Steuerung_Automatisierung < matlab.System
             % group = matlab.system.display.Section(mfilename('class'));
             groups = matlab.system.display.SectionGroup(...
               'Title','General',...
-              'PropertyList',{'box_sequence', 'start_time', 'add_midpoints', 'midpoint_height', ...
+              'PropertyList',{'start_time', 'add_midpoints', 'midpoint_height', ...
               'param'});
         end
     end
