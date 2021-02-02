@@ -27,6 +27,22 @@ system.theta = theta_lb:1.6:theta_ub;
 % Regler:
 % lb = 0.05:
 
+% (blau)
+% lange groﬂe D‰mpfung, ab bestimmter Seill‰nge nimmt D‰mpfung schnell ab
+% Imagin‰rteil bleibt lange sehr klein geht dann allerdings ab bestimmtem
+% Punkt sehr schnell nach auﬂen
+% - oberer teil schwingt etwas (bei kurzem Seil?, auch mit swrl?)
+% - oberer teil schwingt bei langem greifer deutlich (ohne swrl)
+% + mit swrl schwingt oberer Teil bei langem Seil nicht
+% a_P = 0.3;
+% b_P = 0.6;
+% R_P = 43;
+% 
+% P = 100;
+% 
+% K_0 = [-1.774209734276011e+02 -52.898729952739885 -19.337951891493990;
+%     1.237679583918260e+02 25.062015973534102 12.990233214631425];
+
 % (-) (gelb)
 % geringe D‰mpfung
 % Imagin‰rteil geht Richtung neg. Realteil sehr schnell nach auﬂen
