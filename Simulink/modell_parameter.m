@@ -13,9 +13,11 @@ param.ue_K = 6;
 param.ue_G = 3;
 param.d = 0.02;  % Daempfung
 
+param.box_sequence = [4, 1, 2, 5, 3];
+
 param.g = 9.81;
 
-param.baseline_to_left_switch = 4.5;  %cm
+param.baseline_to_left_switch = 13;  %cm
 param.first_box_to_baseline = 22;  %cm
 param.distance_between_boxes = 20;  %cm
 param.goal_to_last_box = 121.4;  %cm
@@ -28,18 +30,21 @@ param.box_lid_width = 14;  %cm
 % When determining midpoints, add this height to the box_height
 param.add_height_to_midpoints = 3;  %cm
 
+% When grabbing box, drive down this much additionally
+param.grab_box_delta = 3;
+
 % Total drivable rail length, in cm
-param.total_rail_length = 135.8 + 118.2; 
+param.total_rail_length = 135.5 + 118.5; 
 
 param.init_x_pos = 127;  %cm, for start and finish positioning
-param.init_y_pos = 10;  %cm
+param.init_y_pos = 20;  %cm
 
 % Gripper measurements
-param.gripper_max_length = 137.5;  %cm
-param.min_gripper_to_ground = 2.5;  %cm    
+param.min_gripper_to_ground = 7;  %cm  
+param.gripper_max_length = 163 - 23 - param.min_gripper_to_ground;  %cm
 
-param.k_AWG_K = 0.3937; %V/m
-param.k_AWG_G = 0.7273; %V/m
+param.k_AWG_K = 1 / (param.total_rail_length / 100); %V/m
+param.k_AWG_G = 1 / (param.gripper_max_length / 100); %V/m
 
 system.currL = param.L_0;
 

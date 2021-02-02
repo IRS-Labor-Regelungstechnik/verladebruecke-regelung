@@ -3,12 +3,14 @@ function [x,y,mag, rest, ...
           vert_vel_tol, angle_tol, angle_vel_tol] = ...
         automation_setpoints(p, add_midpoints, midpoint_height, max_points)
     
-    box_x_pos = (p.box_sequence - 1) * p.distance_between_boxes ...
-        + p.first_box_to_baseline - p.baseline_to_left_switch ...
-        - p.box_width/2;
-    box_y_pos = (ones(size(box_x_pos)) * p.gripper_max_length) - p.box_height + p.min_gripper_to_ground;
+%     box_x_pos = (p.box_sequence - 1) * p.distance_between_boxes ...
+%         + p.first_box_to_baseline - p.baseline_to_left_switch;
+    box_x_pos = (p.box_sequence - 1) * 20 + 11;
+    % box_x_pos = [11, 31, 51, 71, 91];
+    box_y_pos = (ones(size(box_x_pos)) * p.gripper_max_length) - p.box_height + p.min_gripper_to_ground + p.grab_box_delta;
 
-    goal_x_pos = ones(size(box_x_pos)) * (p.first_box_to_baseline + 4*p.distance_between_boxes + 121.4);
+%     goal_x_pos = ones(size(box_x_pos)) * (p.first_box_to_baseline - p.baseline_to_left_switch + 4*p.distance_between_boxes + p.goal_to_last_box);
+    goal_x_pos = 214 * ones(size(box_x_pos));
     goal_y_pos = (ones(size(box_x_pos)) * p.gripper_max_length) - ((1:size(box_x_pos, 2)) * p.box_height) ...
         + p.min_gripper_to_ground;
     
@@ -18,12 +20,12 @@ function [x,y,mag, rest, ...
     rest = zeros(1, max_points); % Seconds to rest after reaching position
     
     default_pos_tol = 5;  % cm or deg
-    default_vel_tol = 5;  % cm/s or deg/s
+    default_vel_tol = 1;  % cm/s or deg/s
     horiz_pos_tol = ones(1, max_points) * default_pos_tol; % All pos tolerances are in cm
     horiz_vel_tol = ones(1, max_points) * default_vel_tol; % All vel tolerances are in cm/s
     vert_pos_tol = ones(1, max_points) * default_pos_tol;
     vert_vel_tol = ones(1, max_points) * default_vel_tol;
-    angle_tol = ones(1, max_points) * default_pos_tol;     % deg
+    angle_tol = ones(1, max_points) * 10;     % deg
     angle_vel_tol = ones(1, max_points) * default_vel_tol; % deg/s
     
     k = 1;
@@ -59,6 +61,7 @@ function [x,y,mag, rest, ...
         y(k) = box_y_pos(i);
         mag(k) = 1;
         rest(k) = 1;
+        horiz_pos_tol(k) = 2;
         k = k+1;
         
         if add_midpoints
@@ -74,6 +77,7 @@ function [x,y,mag, rest, ...
             y(k) = intermediate_height;
             mag(k) = 1;
             rest(k) = 0;
+            horiz_pos_tol(k) = 2;
             k = k+1;
         end
 
