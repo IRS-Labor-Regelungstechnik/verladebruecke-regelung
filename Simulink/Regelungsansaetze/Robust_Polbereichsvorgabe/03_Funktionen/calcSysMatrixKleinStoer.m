@@ -1,7 +1,7 @@
 function [matA_g, matB_g, matC_g, matB, matE] = calcSysMatrixKleinStoer(sys)
 % berechne die Systemmatrizen der Laufkatze ohne Winkeldynamik inklusive
-% Störmodell
-% wird für die Berechnung des reduzierten BEO und die 
+% Störmodell des Spannungsoffset
+% wird für die Berechnung des reduzierten BEO, des kleinen Kalman Flter und die 
 % Störgrößenaufschaltung benötigt
 
 matA = [0 1;

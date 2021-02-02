@@ -1,4 +1,7 @@
 function [matA, matB, matC, matE, matA_g, matB_g, matC_g] = calcSysMatrixStoer(sys)
+% Berechnung der Systemmatrizen des gesamten Systems inklusive des
+% Störmodells des Spannungsoffset
+
 
 matA = [0 1                     0                   0;
         0 -(sys.T_K^-1)         0                   0;

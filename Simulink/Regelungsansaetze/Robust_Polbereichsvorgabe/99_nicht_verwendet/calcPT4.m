@@ -1,5 +1,5 @@
 %
-% pt4 glied berechnung
+% pt4-Glied Berechnung
 %
 
 %% Parameter
