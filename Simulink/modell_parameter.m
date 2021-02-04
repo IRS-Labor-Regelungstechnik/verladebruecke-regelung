@@ -2,13 +2,13 @@
 param.L_0 = 1;  % Range: 0.23m - 1.605m
 param.init_x1 = 0;
 param.phi_0 = 0;
-param.T_K = 0.1;
-param.T_G = 0.05;
+param.T_K = 0.03032;
+param.T_G = 0.0247;
 param.K_K = 1;
 param.K_G = 1;
 param.r_K = 0.046; %m
-param.r_G = 0.05; %m
-param.ue_dreh = 750;
+param.r_G = 0.021975; %m
+param.ue_dreh = 75;
 param.ue_K = 6;
 param.ue_G = 3;
 param.d = 0.02;  % Daempfung
