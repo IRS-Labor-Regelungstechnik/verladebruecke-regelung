@@ -15,15 +15,16 @@ sys = system;
 %% berechne Kalman-Filter
 
 % Kovarianz
-matR_ges = diag([1; 1]); % Kovarianzmatrix Ausgangsrauschen % TODO
-matQ_ges = 5; % Kovarianzmatrix Eingangsrauschen % TODO
+matR_ges = diag([1; 1]); % Kovarianzmatrix Ausgangsrauschen
+matQ_ges = diag([5; 15]); % Kovarianzmatrix Systemrauschen
 
-% Eingangsrauschen
+% Systemrauschen
 % Annahme: wird bei der Übertragung der Solldrehzahl von der dSpace Box zum
-% Umrichter in die Eingangsgröße eingekoppelt, in die Störgröße wird dabei
+% Umrichter in die Eingangsgröße eingekoppelt, in die Störgrößen wird dabei
 % ebenfalls ein Rauschen eingekoppelt
 [~, matB_ges, ~, ~, ~, ~, ~] = calcSysMatrixStoer(sys);
-matG_ges = [matB_ges; matB_ges(2); 0];
+matG_ges = [matB_ges; matB_ges(2); 0]; % Spalte 1
+matG_ges = [matG_ges, [0; 0; 0; matB_ges(4); 0; 1]]; % Spalte 2
 
 
 
