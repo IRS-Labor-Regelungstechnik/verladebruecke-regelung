@@ -1,7 +1,7 @@
 function [matA_g, matB_g, matC_g, matB, matE] = calcSysMatrixHubStoer(sys)
 % berechne die Systemmatrizen der Laufkatze ohne Winkeldynamik inklusive
 % Störmodell
-% wird für die Berechnung des reduzierten BEO und die 
+% wird für die Berechnung des reduzierten BEO, des Kalman Filters und die 
 % Störgrößenaufschaltung benötigt
 
 matA = [0 1;
