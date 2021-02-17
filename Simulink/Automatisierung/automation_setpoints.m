@@ -19,13 +19,13 @@ function [x,y,mag, rest, ...
     mag = zeros(1, max_points);  % State of magnet after reaching position
     rest = zeros(1, max_points); % Seconds to rest after reaching position
     
-    default_pos_tol = 5;  % cm or deg
-    default_vel_tol = 1;  % cm/s or deg/s
+    default_pos_tol = 2;  % cm or deg
+    default_vel_tol = 0.5;  % cm/s or deg/s
     horiz_pos_tol = ones(1, max_points) * default_pos_tol; % All pos tolerances are in cm
     horiz_vel_tol = ones(1, max_points) * default_vel_tol; % All vel tolerances are in cm/s
     vert_pos_tol = ones(1, max_points) * default_pos_tol;
     vert_vel_tol = ones(1, max_points) * default_vel_tol;
-    angle_tol = ones(1, max_points) * 10;     % deg
+    angle_tol = ones(1, max_points) * 5;     % deg
     angle_vel_tol = ones(1, max_points) * default_vel_tol; % deg/s
     
     k = 1;

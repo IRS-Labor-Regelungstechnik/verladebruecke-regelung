@@ -1,0 +1,15 @@
+[System]
+Version=2.2
+SystemType=SingleProcessorSystem
+DAQService=DsDAQ
+DsDAQBackground=1
+Status=Start
+File=gesamtkonzept_p_pd_regler.rta
+RTP=Master
+
+[Master]
+Type=DS1202
+State=Enabled
+ServiceID=1
+TraceFile=gesamtkonzept_p_pd_regler.trc
+ID=FD6214AD-24A5-4669-8A92-EC3E1FDF0A31

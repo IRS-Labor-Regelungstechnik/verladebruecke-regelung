@@ -30,18 +30,18 @@ classdef offset_abgleich < matlab.System
 %     end
 
     methods(Access = protected)
-        %% Common functions        
+        %% Common functions
         function setupImpl(obj)
             % Perform one-time calculations, such as computing constants
             obj.offset = 0;
-            obj.sollwert = 0.5; % Sollwert in V % TODO!!!
+            obj.sollwert = 0.537; % Sollwert in V
             
             obj.taster_entprellung = -1; % damit auch bei clock = 0 offset abgleich durchgeführt werden kann
         end
 
         function [output] = stepImpl(obj, input, taster, clock)
             
-            if (taster > 0.5) && (clock - obj.taster_entprellung > 1) % taster gedrückt
+            if (taster > 0.3) && (clock - obj.taster_entprellung > 1) % taster gedrückt
                 obj.taster_entprellung = clock;
                 
                 obj.offset = input - obj.sollwert; % berechne aktuellen Offset
