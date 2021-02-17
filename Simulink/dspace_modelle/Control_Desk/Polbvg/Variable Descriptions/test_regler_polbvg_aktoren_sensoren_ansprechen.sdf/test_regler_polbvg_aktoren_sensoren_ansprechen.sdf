@@ -1,0 +1,15 @@
+[System]
+Version=2.2
+SystemType=SingleProcessorSystem
+DAQService=DsDAQ
+DsDAQBackground=1
+Status=Start
+File=test_regler_polbvg_aktoren_sensoren_ansprechen.rta
+RTP=Master
+
+[Master]
+Type=DS1202
+State=Enabled
+ServiceID=1
+TraceFile=test_regler_polbvg_aktoren_sensoren_ansprechen.trc
+ID=239ECC33-A2DC-40B3-8EC7-EF78FAFEB263

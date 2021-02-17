@@ -9,7 +9,7 @@ sys = system;
 %% zu variierende Parameter
 
 theta1_lb = 0.03; % L upper bound
-theta1_ub = 0.5; % L lower bound
+theta1_ub = 1.5; % L lower bound
 system.theta1 = theta1_lb:0.01:theta1_ub;
 
 theta2_lb = 0.03032; % T_K upper bound

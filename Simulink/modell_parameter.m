@@ -2,12 +2,12 @@
 param.L_0 = 0.10;  % Range: 0.23m - 1.605m
 param.init_x1 = 0;
 param.phi_0 = 0;
-param.T_K = 0.1;
-param.T_G = 0.05;
+param.T_K = 0.03032;
+param.T_G = 0.0247;
 param.K_K = 1;
 param.K_G = 1;
 param.r_K = 0.046; %m
-param.r_G = 0.05; %m
+param.r_G = 0.021975; %m
 param.ue_dreh = 75;
 param.ue_K = 6;
 param.ue_G = 3;
@@ -45,16 +45,5 @@ param.gripper_max_length = 163 - 23 - param.min_gripper_to_ground;  %cm
 
 param.k_AWG_K = 1 / (param.total_rail_length / 100); %V/m
 param.k_AWG_G = 1 / (param.gripper_max_length / 100); %V/m
-
-system.currL = param.L_0;
-
-% mechanisches System:
-system.R = param.r_K; % Radius Rad
-system.ue = param.ue_K; % ?bersetzungsverh?ltnis
-system.g = 9.81; % Erdbeschleunigung
-
-% PT1 Glied
-system.T_K = param.T_K;
-system.K_K = param.K_K;
 
 param.eta_K = 2*pi*param.r_K*param.K_K*param.ue_dreh/(param.ue_K*param.T_K);

@@ -1,0 +1,15 @@
+[System]
+Version=2.2
+SystemType=SingleProcessorSystem
+DAQService=DsDAQ
+DsDAQBackground=1
+Status=Start
+File=laufkatze_teach_weg.rta
+RTP=Master
+
+[Master]
+Type=DS1202
+State=Enabled
+ServiceID=1
+TraceFile=laufkatze_teach_weg.trc
+ID=F6981178-5436-4D72-8833-FB9EFB1976C9

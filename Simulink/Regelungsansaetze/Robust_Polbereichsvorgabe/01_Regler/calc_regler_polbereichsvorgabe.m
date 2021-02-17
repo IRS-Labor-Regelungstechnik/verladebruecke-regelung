@@ -26,7 +26,7 @@ system.theta = theta_lb:1.64:theta_ub;
 
 % (rot)
 % + funktioniert für kleine / große Greiferlänge
-% - schwingt stark in position
+% - schwingt ohne Pahsenkompensation stark in Position
 a_P = 0.1;
 b_P = 0.6;
 R_P = 43;
