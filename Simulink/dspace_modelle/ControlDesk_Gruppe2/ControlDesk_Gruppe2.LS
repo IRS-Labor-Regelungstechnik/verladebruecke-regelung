@@ -92,18 +92,34 @@
 						</item>
 					</item>
 					<item>
-						<Name type="key">gesamtkonzept_p_pd_regler.sdf</Name>
+						<Name type="key">gesamtkonzept_p_regler.sdf</Name>
 						<ViewFlags type="key">0</ViewFlags>
 						<item>
-							<Name type="key">gesamtkonzept_p_pd_regler.trc</Name>
+							<Name type="key">gesamtkonzept_p_regler.trc</Name>
 							<ViewFlags type="key">1</ViewFlags>
 						</item>
 						<item>
-							<Name type="key">gesamtkonzept_p_pd_regler.map</Name>
+							<Name type="key">gesamtkonzept_p_regler.map</Name>
 							<ViewFlags type="key">1</ViewFlags>
 						</item>
 						<item>
-							<Name type="key">gesamtkonzept_p_pd_regler.rta</Name>
+							<Name type="key">gesamtkonzept_p_regler.rta</Name>
+							<ViewFlags type="key">1</ViewFlags>
+						</item>
+					</item>
+					<item>
+						<Name type="key">temp.sdf</Name>
+						<ViewFlags type="key">0</ViewFlags>
+						<item>
+							<Name type="key">temp.trc</Name>
+							<ViewFlags type="key">1</ViewFlags>
+						</item>
+						<item>
+							<Name type="key">temp.map</Name>
+							<ViewFlags type="key">1</ViewFlags>
+						</item>
+						<item>
+							<Name type="key">temp.rta</Name>
 							<ViewFlags type="key">1</ViewFlags>
 						</item>
 					</item>

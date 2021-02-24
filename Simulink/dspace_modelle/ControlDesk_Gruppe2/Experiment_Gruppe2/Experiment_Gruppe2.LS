@@ -2,14 +2,9 @@
 <Root>
 	<ProjectExperiment>
 		<window>
-			<Name type="key">ReglerRiccati</Name>
-			<Flags type="key">2c0000000200000003000000fffffffffffffffff8ffffffe1ffffff6800000068000000f8050000ca010000</Flags>
-			<ViewFlags type="key">3</ViewFlags>
-		</window>
-		<window>
-			<Name type="key">ReglerPolbvg</Name>
-			<Flags type="key">2c0000000000000001000000fffffffffffffffff8ffffffe1ffffff4e0000004e000000de050000b0010000</Flags>
-			<ViewFlags type="key">2</ViewFlags>
+			<Name type="key">AutomatIstSoll</Name>
+			<Flags type="key">2c0000000200000003000000fffffffffffffffff8ffffffe1ffffff1a0000001a000000b40500009e010000</Flags>
+			<ViewFlags type="key">0</ViewFlags>
 		</window>
 		<window>
 			<Name type="key">AutomatOK</Name>
@@ -17,14 +12,19 @@
 			<ViewFlags type="key">1</ViewFlags>
 		</window>
 		<window>
-			<Name type="key">AutomatIstSoll</Name>
-			<Flags type="key">2c0000000000000001000000fffffffffffffffff8ffffffe1ffffff1a0000001a000000b40500009e010000</Flags>
-			<ViewFlags type="key">0</ViewFlags>
+			<Name type="key">P_Regler_und_Polbvg</Name>
+			<Flags type="key">2c0000000000000001000000fffffffffffffffff8ffffffe1ffffff4e0000004e000000de050000b0010000</Flags>
+			<ViewFlags type="key">2</ViewFlags>
 		</window>
 		<window>
 			<Name type="key">TeachingHub</Name>
 			<Flags type="key">2c0000000000000001000000fffffffffffffffff8ffffffe1ffffff820000008200000012060000e4010000</Flags>
 			<ViewFlags type="key">4</ViewFlags>
+		</window>
+		<window>
+			<Name type="key">ReglerRiccati</Name>
+			<Flags type="key">2c0000000000000001000000fffffffffffffffff8ffffffe1ffffff6800000068000000f8050000ca010000</Flags>
+			<ViewFlags type="key">3</ViewFlags>
 		</window>
 		<window>
 			<Name type="key">TeachingWeg</Name>
@@ -53,7 +53,7 @@
 						<ViewFlags type="key">1</ViewFlags>
 					</item>
 					<item>
-						<Name type="key">ReglerPolbvg.lay</Name>
+						<Name type="key">P_Regler_und_Polbvg.lay</Name>
 						<ViewFlags type="key">1</ViewFlags>
 					</item>
 					<item>
@@ -104,7 +104,7 @@
 							</item>
 						</item>
 						<item>
-							<Name type="key">gesamtkonzept_p_pd_regler.sdf</Name>
+							<Name type="key">gesamtkonzept_p_regler.sdf</Name>
 							<ViewFlags type="key">1</ViewFlags>
 							<item>
 								<Name type="key">rec1_008.mf4</Name>
@@ -118,6 +118,18 @@
 								<Name type="key">P-Regler-Success.mf4</Name>
 								<ViewFlags type="key">1</ViewFlags>
 							</item>
+							<item>
+								<Name type="key">P-Regler-mit-Butter.mf4</Name>
+								<ViewFlags type="key">1</ViewFlags>
+							</item>
+							<item>
+								<Name type="key">P-Regler-mit-Butter_Buffer.mf4</Name>
+								<ViewFlags type="key">1</ViewFlags>
+							</item>
+						</item>
+						<item>
+							<Name type="key">temp.sdf</Name>
+							<ViewFlags type="key">1</ViewFlags>
 						</item>
 					</item>
 				</item>
@@ -134,7 +146,7 @@
 					</item>
 					<item>
 						<Name type="key">robust_winkeltol_10.mf4</Name>
-						<ViewFlags type="key">1</ViewFlags>
+						<ViewFlags type="key">5</ViewFlags>
 					</item>
 					<item>
 						<Name type="key">rec1_007.mf4</Name>
@@ -142,19 +154,27 @@
 					</item>
 					<item>
 						<Name type="key">rec1_008.mf4</Name>
-						<ViewFlags type="key">1</ViewFlags>
+						<ViewFlags type="key">5</ViewFlags>
 					</item>
 					<item>
 						<Name type="key">rec1_009.mf4</Name>
-						<ViewFlags type="key">1</ViewFlags>
+						<ViewFlags type="key">5</ViewFlags>
 					</item>
 					<item>
 						<Name type="key">P-Regler-Success.mf4</Name>
-						<ViewFlags type="key">1</ViewFlags>
+						<ViewFlags type="key">5</ViewFlags>
 					</item>
 					<item>
 						<Name type="key">RiccatiRegler.mf4</Name>
-						<ViewFlags type="key">1</ViewFlags>
+						<ViewFlags type="key">5</ViewFlags>
+					</item>
+					<item>
+						<Name type="key">P-Regler-mit-Butter.mf4</Name>
+						<ViewFlags type="key">5</ViewFlags>
+					</item>
+					<item>
+						<Name type="key">P-Regler-mit-Butter_Buffer.mf4</Name>
+						<ViewFlags type="key">5</ViewFlags>
 					</item>
 				</item>
 				<item>
@@ -193,7 +213,7 @@
 			<File0 type="key">TeachingWeg.lay</File0>
 			<File1 type="key">TeachingHub.lay</File1>
 			<File2 type="key">ReglerRiccati.lay</File2>
-			<File3 type="key">ReglerPolbvg.lay</File3>
+			<File3 type="key">P_Regler_und_Polbvg.lay</File3>
 			<File4 type="key">AutomatOK.lay</File4>
 			<File5 type="key">AutomatIstSoll.lay</File5>
 		</Openfiles>

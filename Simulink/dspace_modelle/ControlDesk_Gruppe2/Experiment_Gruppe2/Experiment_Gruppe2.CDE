@@ -30,6 +30,7 @@
 			<ItemInfoAddInfoDb type="key"/>
 			<ItemInfoAuthor type="key">verladebruecke</ItemInfoAuthor>
 			<item>
+				<Component type="key">Instrumentation</Component>
 				<Targets type="key">instrumentation</Targets>
 				<Name type="key">Experiment Layouts</Name>
 				<DisplayName type="key">Experiment Layouts</DisplayName>
@@ -89,8 +90,8 @@
 				</item>
 				<item>
 					<Component type="key">Instrumentation</Component>
-					<Name type="key">ReglerPolbvg.lay</Name>
-					<DisplayName type="key">ReglerPolbvg.lay</DisplayName>
+					<Name type="key">P_Regler_und_Polbvg.lay</Name>
+					<DisplayName type="key">P_Regler_und_Polbvg.lay</DisplayName>
 					<Path type="key">.\Experiment Layouts</Path>
 					<Flags type="key">16448</Flags>
 					<Type type="key">10</Type>
@@ -210,7 +211,7 @@
 					<item>
 						<Component type="key">VariablesManagement</Component>
 						<Targets type="key">,VariableDescription::riccatiregler_anlage.sdf</Targets>
-						<Flags type="key">18736</Flags>
+						<Flags type="key">18720</Flags>
 						<ExtendedFlags type="key">1</ExtendedFlags>
 						<UniqueID type="key">39632034</UniqueID>
 						<LinkedItem type="key">458801780</LinkedItem>
@@ -229,8 +230,8 @@
 					</item>
 					<item>
 						<Component type="key">VariablesManagement</Component>
-						<Targets type="key">,VariableDescription::gesamtkonzept_p_pd_regler.sdf</Targets>
-						<Flags type="key">18720</Flags>
+						<Targets type="key">,VariableDescription::gesamtkonzept_p_regler.sdf</Targets>
+						<Flags type="key">18736</Flags>
 						<ExtendedFlags type="key">1</ExtendedFlags>
 						<UniqueID type="key">339235168</UniqueID>
 						<LinkedItem type="key">285304200</LinkedItem>
@@ -252,6 +253,26 @@
 							<UniqueID type="key">1009577027</UniqueID>
 							<LinkedItem type="key">962570725</LinkedItem>
 						</item>
+						<item>
+							<Component type="key">MeasureDataManagement</Component>
+							<Flags type="key">1380</Flags>
+							<UniqueID type="key">705119493</UniqueID>
+							<LinkedItem type="key">911480920</LinkedItem>
+						</item>
+						<item>
+							<Component type="key">MeasureDataManagement</Component>
+							<Flags type="key">1380</Flags>
+							<UniqueID type="key">616220349</UniqueID>
+							<LinkedItem type="key">814413638</LinkedItem>
+						</item>
+					</item>
+					<item>
+						<Component type="key">VariablesManagement</Component>
+						<Targets type="key">,VariableDescription::temp.sdf</Targets>
+						<Flags type="key">18720</Flags>
+						<ExtendedFlags type="key">1</ExtendedFlags>
+						<UniqueID type="key">2314574</UniqueID>
+						<LinkedItem type="key">629564001</LinkedItem>
 					</item>
 				</item>
 			</item>
@@ -310,12 +331,12 @@
 					<EntityID type="key">{12740076-FF3C-448C-B605-A086D410D44E}</EntityID>
 					<ItemInfoDate type="key">17.02.2021 15:26:34</ItemInfoDate>
 					<ItemInfoPath type="key">$FPATH$</ItemInfoPath>
+					<ItemInfoDescr type="key"/>
 					<ItemInfoLog type="key">
 Software revision: gesamtkonzept_robuster_regler_polbvg.sdf, gesamtkonzept_robuster_regler_polbvg.rta
 Variable description: gesamtkonzept_robuster_regler_polbvg.sdf
     Platform / Device: Platform [DS1202 MicroLabBox, assigned to 'ds1202']
 ControlDesk version: 6.0</ItemInfoLog>
-					<ItemInfoDescr type="key"/>
 					<ItemInfoAddInfoDb type="key"/>
 					<ItemInfoAuthor type="key">verladebruecke</ItemInfoAuthor>
 				</item>
@@ -330,12 +351,12 @@ ControlDesk version: 6.0</ItemInfoLog>
 					<EntityID type="key">{08BC0023-F71B-45FA-B7B3-D4645B0D84E8}</EntityID>
 					<ItemInfoDate type="key">17.02.2021 15:48:50</ItemInfoDate>
 					<ItemInfoPath type="key">$FPATH$</ItemInfoPath>
+					<ItemInfoDescr type="key"/>
 					<ItemInfoLog type="key">
 Software revision: riccatiregler_anlage.sdf, riccatiregler_anlage.rta
 Variable description: riccatiregler_anlage.sdf
     Platform / Device: Platform [DS1202 MicroLabBox, assigned to 'ds1202']
 ControlDesk version: 6.0</ItemInfoLog>
-					<ItemInfoDescr type="key"/>
 					<ItemInfoAddInfoDb type="key"/>
 					<ItemInfoAuthor type="key">verladebruecke</ItemInfoAuthor>
 				</item>
@@ -350,12 +371,12 @@ ControlDesk version: 6.0</ItemInfoLog>
 					<EntityID type="key">{04007EB6-D234-40E0-A3E2-8A1FDB34CE14}</EntityID>
 					<ItemInfoDate type="key">17.02.2021 15:57:49</ItemInfoDate>
 					<ItemInfoPath type="key">$FPATH$</ItemInfoPath>
+					<ItemInfoDescr type="key"/>
 					<ItemInfoLog type="key">
 Software revision: gesamtkonzept_p_pd_regler.sdf, gesamtkonzept_p_pd_regler.rta
 Variable description: gesamtkonzept_p_pd_regler.sdf
     Platform / Device: Platform [DS1202 MicroLabBox, assigned to 'ds1202']
 ControlDesk version: 6.0</ItemInfoLog>
-					<ItemInfoDescr type="key"/>
 					<ItemInfoAddInfoDb type="key"/>
 					<ItemInfoAuthor type="key">verladebruecke</ItemInfoAuthor>
 				</item>
@@ -370,12 +391,12 @@ ControlDesk version: 6.0</ItemInfoLog>
 					<EntityID type="key">{261DB108-4DF0-4C4F-8FE6-ED863FA997CC}</EntityID>
 					<ItemInfoDate type="key">17.02.2021 16:02:31</ItemInfoDate>
 					<ItemInfoPath type="key">$FPATH$</ItemInfoPath>
+					<ItemInfoDescr type="key"/>
 					<ItemInfoLog type="key">
 Software revision: gesamtkonzept_p_pd_regler.sdf, gesamtkonzept_p_pd_regler.rta
 Variable description: gesamtkonzept_p_pd_regler.sdf
     Platform / Device: Platform [DS1202 MicroLabBox, assigned to 'ds1202']
 ControlDesk version: 6.0</ItemInfoLog>
-					<ItemInfoDescr type="key"/>
 					<ItemInfoAddInfoDb type="key"/>
 					<ItemInfoAuthor type="key">verladebruecke</ItemInfoAuthor>
 				</item>
@@ -390,12 +411,12 @@ ControlDesk version: 6.0</ItemInfoLog>
 					<EntityID type="key">{31CF10C3-103F-49BA-85B1-85DC07BCAA43}</EntityID>
 					<ItemInfoDate type="key">17.02.2021 16:09:08</ItemInfoDate>
 					<ItemInfoPath type="key">$FPATH$</ItemInfoPath>
+					<ItemInfoDescr type="key"/>
 					<ItemInfoLog type="key">
 Software revision: gesamtkonzept_p_pd_regler.sdf, gesamtkonzept_p_pd_regler.rta
 Variable description: gesamtkonzept_p_pd_regler.sdf
     Platform / Device: Platform [DS1202 MicroLabBox, assigned to 'ds1202']
 ControlDesk version: 6.0</ItemInfoLog>
-					<ItemInfoDescr type="key"/>
 					<ItemInfoAddInfoDb type="key"/>
 					<ItemInfoAuthor type="key">verladebruecke</ItemInfoAuthor>
 				</item>
@@ -410,9 +431,49 @@ ControlDesk version: 6.0</ItemInfoLog>
 					<EntityID type="key">{AFD22823-0476-40CE-99C4-D025A530A539}</EntityID>
 					<ItemInfoDate type="key">17.02.2021 16:26:20</ItemInfoDate>
 					<ItemInfoPath type="key">$FPATH$</ItemInfoPath>
+					<ItemInfoDescr type="key"/>
 					<ItemInfoLog type="key">
 Software revision: riccatiregler_anlage.sdf, riccatiregler_anlage.rta
 Variable description: riccatiregler_anlage.sdf
+    Platform / Device: Platform [DS1202 MicroLabBox, assigned to 'ds1202']
+ControlDesk version: 6.0</ItemInfoLog>
+					<ItemInfoAddInfoDb type="key"/>
+					<ItemInfoAuthor type="key">verladebruecke</ItemInfoAuthor>
+				</item>
+				<item>
+					<Component type="key">MeasureDataManagement</Component>
+					<Name type="key">P-Regler-mit-Butter.mf4</Name>
+					<DisplayName type="key">P-Regler-mit-Butter.mf4</DisplayName>
+					<Path type="key">.\Measurement Data</Path>
+					<Flags type="key">1088</Flags>
+					<Type type="key">9</Type>
+					<UniqueID type="key">911480920</UniqueID>
+					<EntityID type="key">{205E59F0-FA66-4FDD-BB80-85BFB8EC7B4A}</EntityID>
+					<ItemInfoDate type="key">19.02.2021 14:56:46</ItemInfoDate>
+					<ItemInfoPath type="key">$FPATH$</ItemInfoPath>
+					<ItemInfoLog type="key">
+Software revision: gesamtkonzept_p_regler.sdf, gesamtkonzept_p_regler.rta
+Variable description: gesamtkonzept_p_regler.sdf
+    Platform / Device: Platform [DS1202 MicroLabBox, assigned to 'ds1202']
+ControlDesk version: 6.0</ItemInfoLog>
+					<ItemInfoDescr type="key"/>
+					<ItemInfoAddInfoDb type="key"/>
+					<ItemInfoAuthor type="key">verladebruecke</ItemInfoAuthor>
+				</item>
+				<item>
+					<Component type="key">MeasureDataManagement</Component>
+					<Name type="key">P-Regler-mit-Butter_Buffer.mf4</Name>
+					<DisplayName type="key">P-Regler-mit-Butter_Buffer.mf4</DisplayName>
+					<Path type="key">.\Measurement Data</Path>
+					<Flags type="key">1088</Flags>
+					<Type type="key">9</Type>
+					<UniqueID type="key">814413638</UniqueID>
+					<EntityID type="key">{3B43AC96-EA62-4C30-92FF-804FA22C6FC9}</EntityID>
+					<ItemInfoDate type="key">19.02.2021 14:56:49</ItemInfoDate>
+					<ItemInfoPath type="key">$FPATH$</ItemInfoPath>
+					<ItemInfoLog type="key">
+Software revision: gesamtkonzept_p_regler.sdf, gesamtkonzept_p_regler.rta
+Variable description: gesamtkonzept_p_regler.sdf
     Platform / Device: Platform [DS1202 MicroLabBox, assigned to 'ds1202']
 ControlDesk version: 6.0</ItemInfoLog>
 					<ItemInfoDescr type="key"/>
@@ -602,7 +663,7 @@ ControlDesk version: 6.0</ItemInfoLog>
 			<NextUniqueKey type="key">4</NextUniqueKey>
 			<SignalList>
 				<Variable>
-					<Name type="key">Model Root/ADC_xUout/In1</Name>
+					<Name type="key">Model Root/Ablaufsteuerung/angle/In1</Name>
 					<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
 					<Active type="key">-1</Active>
 					<Signal>
@@ -610,7 +671,7 @@ ControlDesk version: 6.0</ItemInfoLog>
 					</Signal>
 				</Variable>
 				<Variable>
-					<Name type="key">Model Root/Kalman Filter/geschätzter\nWinkeloffset/In1</Name>
+					<Name type="key">Model Root/Ablaufsteuerung/angle_OK/In1</Name>
 					<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
 					<Active type="key">-1</Active>
 					<Signal>
@@ -618,7 +679,7 @@ ControlDesk version: 6.0</ItemInfoLog>
 					</Signal>
 				</Variable>
 				<Variable>
-					<Name type="key">Model Root/n_hub/In1</Name>
+					<Name type="key">Model Root/Ablaufsteuerung/angle_speed/In1</Name>
 					<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
 					<Active type="key">-1</Active>
 					<Signal>
@@ -626,7 +687,7 @@ ControlDesk version: 6.0</ItemInfoLog>
 					</Signal>
 				</Variable>
 				<Variable>
-					<Name type="key">Model Root/n_hub_RL/In1</Name>
+					<Name type="key">Model Root/Ablaufsteuerung/angle_speed_OK/In1</Name>
 					<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
 					<Active type="key">-1</Active>
 					<Signal>
@@ -634,7 +695,7 @@ ControlDesk version: 6.0</ItemInfoLog>
 					</Signal>
 				</Variable>
 				<Variable>
-					<Name type="key">Model Root/n_weg/In1</Name>
+					<Name type="key">Model Root/Ablaufsteuerung/horiz_pos/In1</Name>
 					<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
 					<Active type="key">-1</Active>
 					<Signal>
@@ -642,7 +703,7 @@ ControlDesk version: 6.0</ItemInfoLog>
 					</Signal>
 				</Variable>
 				<Variable>
-					<Name type="key">Model Root/n_weg_RL/In1</Name>
+					<Name type="key">Model Root/Ablaufsteuerung/horiz_speed/In1</Name>
 					<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
 					<Active type="key">-1</Active>
 					<Signal>
@@ -650,7 +711,7 @@ ControlDesk version: 6.0</ItemInfoLog>
 					</Signal>
 				</Variable>
 				<Variable>
-					<Name type="key">Model Root/Störgröße_hub/In1</Name>
+					<Name type="key">Model Root/Ablaufsteuerung/magnet/In1</Name>
 					<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
 					<Active type="key">-1</Active>
 					<Signal>
@@ -658,7 +719,7 @@ ControlDesk version: 6.0</ItemInfoLog>
 					</Signal>
 				</Variable>
 				<Variable>
-					<Name type="key">Model Root/Störgröße_weg/In1</Name>
+					<Name type="key">Model Root/Ablaufsteuerung/regler_an/In1</Name>
 					<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
 					<Active type="key">-1</Active>
 					<Signal>
@@ -666,7 +727,7 @@ ControlDesk version: 6.0</ItemInfoLog>
 					</Signal>
 				</Variable>
 				<Variable>
-					<Name type="key">Model Root/Winkel_Position/In1</Name>
+					<Name type="key">Model Root/Ablaufsteuerung/vert_pos/In1</Name>
 					<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
 					<Active type="key">-1</Active>
 					<Signal>
@@ -674,7 +735,7 @@ ControlDesk version: 6.0</ItemInfoLog>
 					</Signal>
 				</Variable>
 				<Variable>
-					<Name type="key">Model Root/x_hub/In1</Name>
+					<Name type="key">Model Root/Ablaufsteuerung/vert_speed/In1</Name>
 					<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
 					<Active type="key">-1</Active>
 					<Signal>
@@ -682,7 +743,175 @@ ControlDesk version: 6.0</ItemInfoLog>
 					</Signal>
 				</Variable>
 				<Variable>
-					<Name type="key">Model Root/x_weg/In1</Name>
+					<Name type="key">Model Root/Ablaufsteuerung/x_pos_OK/In1</Name>
+					<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
+					<Active type="key">-1</Active>
+					<Signal>
+						<Raster type="key">HostService</Raster>
+					</Signal>
+				</Variable>
+				<Variable>
+					<Name type="key">Model Root/Ablaufsteuerung/x_soll/In1</Name>
+					<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
+					<Active type="key">-1</Active>
+					<Signal>
+						<Raster type="key">HostService</Raster>
+					</Signal>
+				</Variable>
+				<Variable>
+					<Name type="key">Model Root/Ablaufsteuerung/x_speed_OK/In1</Name>
+					<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
+					<Active type="key">-1</Active>
+					<Signal>
+						<Raster type="key">HostService</Raster>
+					</Signal>
+				</Variable>
+				<Variable>
+					<Name type="key">Model Root/Ablaufsteuerung/y_pos_OK/In1</Name>
+					<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
+					<Active type="key">-1</Active>
+					<Signal>
+						<Raster type="key">HostService</Raster>
+					</Signal>
+				</Variable>
+				<Variable>
+					<Name type="key">Model Root/Ablaufsteuerung/y_soll/In1</Name>
+					<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
+					<Active type="key">-1</Active>
+					<Signal>
+						<Raster type="key">HostService</Raster>
+					</Signal>
+				</Variable>
+				<Variable>
+					<Name type="key">Model Root/Ablaufsteuerung/y_speed_OK/In1</Name>
+					<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
+					<Active type="key">-1</Active>
+					<Signal>
+						<Raster type="key">HostService</Raster>
+					</Signal>
+				</Variable>
+				<Variable>
+					<Name type="key">Model Root/ADC_yUout/In1</Name>
+					<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
+					<Active type="key">-1</Active>
+					<Signal>
+						<Raster type="key">HostService</Raster>
+					</Signal>
+				</Variable>
+				<Variable>
+					<Name type="key">Model Root/AWG_Weg/ADC_xUout/In1</Name>
+					<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
+					<Active type="key">-1</Active>
+					<Signal>
+						<Raster type="key">HostService</Raster>
+					</Signal>
+				</Variable>
+				<Variable>
+					<Name type="key">Model Root/AWG_Weg/ADC_xUout_offset_abgleich/In1</Name>
+					<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
+					<Active type="key">-1</Active>
+					<Signal>
+						<Raster type="key">HostService</Raster>
+					</Signal>
+				</Variable>
+				<Variable>
+					<Name type="key">Model Root/DAC_Motor_Hub/In1</Name>
+					<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
+					<Active type="key">-1</Active>
+					<Signal>
+						<Raster type="key">HostService</Raster>
+					</Signal>
+				</Variable>
+				<Variable>
+					<Name type="key">Model Root/DAC_Motor_Weg/In1</Name>
+					<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
+					<Active type="key">-1</Active>
+					<Signal>
+						<Raster type="key">HostService</Raster>
+					</Signal>
+				</Variable>
+				<Variable>
+					<Name type="key">Model Root/Position (x-Richtung)/In1</Name>
+					<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
+					<Active type="key">-1</Active>
+					<Signal>
+						<Raster type="key">HostService</Raster>
+					</Signal>
+				</Variable>
+				<Variable>
+					<Name type="key">Model Root/Regler_Hub/Ausgangsgröße\n(Spannung)/In1</Name>
+					<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
+					<Active type="key">-1</Active>
+					<Signal>
+						<Raster type="key">HostService</Raster>
+					</Signal>
+				</Variable>
+				<Variable>
+					<Name type="key">Model Root/Regler_Hub/geschätzte\nStörgröße/In1</Name>
+					<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
+					<Active type="key">-1</Active>
+					<Signal>
+						<Raster type="key">HostService</Raster>
+					</Signal>
+				</Variable>
+				<Variable>
+					<Name type="key">Model Root/Regler_Hub/Regelabweichung/In1</Name>
+					<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
+					<Active type="key">-1</Active>
+					<Signal>
+						<Raster type="key">HostService</Raster>
+					</Signal>
+				</Variable>
+				<Variable>
+					<Name type="key">Model Root/Regler_Hub/Stellgröße/In1</Name>
+					<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
+					<Active type="key">-1</Active>
+					<Signal>
+						<Raster type="key">HostService</Raster>
+					</Signal>
+				</Variable>
+				<Variable>
+					<Name type="key">Model Root/Regler_Weg/Stellgröße\n ohne Begrenzung/In1</Name>
+					<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
+					<Active type="key">-1</Active>
+					<Signal>
+						<Raster type="key">HostService</Raster>
+					</Signal>
+				</Variable>
+				<Variable>
+					<Name type="key">Model Root/Regler_Weg/tatsächliche Stellgröße/In1</Name>
+					<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
+					<Active type="key">-1</Active>
+					<Signal>
+						<Raster type="key">HostService</Raster>
+					</Signal>
+				</Variable>
+				<Variable>
+					<Name type="key">Model Root/Regler_Weg/tatsächliche Stellgröße/In2</Name>
+					<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
+					<Active type="key">-1</Active>
+					<Signal>
+						<Raster type="key">HostService</Raster>
+					</Signal>
+				</Variable>
+				<Variable>
+					<Name type="key">Model Root/Sensor_Winkel/Winkel_ADC/In1</Name>
+					<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
+					<Active type="key">-1</Active>
+					<Signal>
+						<Raster type="key">HostService</Raster>
+					</Signal>
+				</Variable>
+				<Variable>
+					<Name type="key">Model Root/Winkel umgerechnet/In1</Name>
+					<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
+					<Active type="key">-1</Active>
+					<Signal>
+						<Raster type="key">HostService</Raster>
+					</Signal>
+				</Variable>
+				<Variable>
+					<Name type="key">Model Root/Winkel_korrigiert/In1</Name>
 					<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
 					<Active type="key">-1</Active>
 					<Signal>
@@ -745,7 +974,7 @@ ControlDesk version: 6.0</ItemInfoLog>
 					<AutomaticExportFolder type="key"/>
 					<AutomaticNamingEnabled type="key">-1</AutomaticNamingEnabled>
 					<AutomaticNamingMinimunDigits type="key">3</AutomaticNamingMinimunDigits>
-					<AutomaticNamingStartIndex type="key">1</AutomaticNamingStartIndex>
+					<AutomaticNamingStartIndex type="key">2</AutomaticNamingStartIndex>
 					<Description type="key"/>
 					<FileNamePrefix type="key">buf_</FileNamePrefix>
 					<OpenInMeasurementDataPoolEnabled type="key">0</OpenInMeasurementDataPoolEnabled>
@@ -815,7 +1044,7 @@ ControlDesk version: 6.0</ItemInfoLog>
 						<AutomaticExportFolder type="key"/>
 						<AutomaticNamingEnabled type="key">-1</AutomaticNamingEnabled>
 						<AutomaticNamingMinimunDigits type="key">3</AutomaticNamingMinimunDigits>
-						<AutomaticNamingStartIndex type="key">13</AutomaticNamingStartIndex>
+						<AutomaticNamingStartIndex type="key">18</AutomaticNamingStartIndex>
 						<Description type="key"/>
 						<FileNamePrefix type="key">rec1_</FileNamePrefix>
 						<OpenInMeasurementDataPoolEnabled type="key">0</OpenInMeasurementDataPoolEnabled>
@@ -823,7 +1052,7 @@ ControlDesk version: 6.0</ItemInfoLog>
 					</StorageInformation>
 					<SignalList>
 						<Variable>
-							<Name type="key">Model Root/ADC_xUout/In1</Name>
+							<Name type="key">Model Root/Ablaufsteuerung/angle/In1</Name>
 							<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
 							<PlatformDisplayName type="key">Platform</PlatformDisplayName>
 							<Recorded type="key">-1</Recorded>
@@ -832,7 +1061,7 @@ ControlDesk version: 6.0</ItemInfoLog>
 							</Signal>
 						</Variable>
 						<Variable>
-							<Name type="key">Model Root/Kalman Filter/geschätzter\nWinkeloffset/In1</Name>
+							<Name type="key">Model Root/Ablaufsteuerung/angle_OK/In1</Name>
 							<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
 							<PlatformDisplayName type="key">Platform</PlatformDisplayName>
 							<Recorded type="key">-1</Recorded>
@@ -841,7 +1070,7 @@ ControlDesk version: 6.0</ItemInfoLog>
 							</Signal>
 						</Variable>
 						<Variable>
-							<Name type="key">Model Root/n_hub/In1</Name>
+							<Name type="key">Model Root/Ablaufsteuerung/angle_speed/In1</Name>
 							<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
 							<PlatformDisplayName type="key">Platform</PlatformDisplayName>
 							<Recorded type="key">-1</Recorded>
@@ -850,7 +1079,7 @@ ControlDesk version: 6.0</ItemInfoLog>
 							</Signal>
 						</Variable>
 						<Variable>
-							<Name type="key">Model Root/n_hub_RL/In1</Name>
+							<Name type="key">Model Root/Ablaufsteuerung/angle_speed_OK/In1</Name>
 							<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
 							<PlatformDisplayName type="key">Platform</PlatformDisplayName>
 							<Recorded type="key">-1</Recorded>
@@ -859,7 +1088,7 @@ ControlDesk version: 6.0</ItemInfoLog>
 							</Signal>
 						</Variable>
 						<Variable>
-							<Name type="key">Model Root/n_weg/In1</Name>
+							<Name type="key">Model Root/Ablaufsteuerung/horiz_pos/In1</Name>
 							<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
 							<PlatformDisplayName type="key">Platform</PlatformDisplayName>
 							<Recorded type="key">-1</Recorded>
@@ -868,7 +1097,7 @@ ControlDesk version: 6.0</ItemInfoLog>
 							</Signal>
 						</Variable>
 						<Variable>
-							<Name type="key">Model Root/n_weg_RL/In1</Name>
+							<Name type="key">Model Root/Ablaufsteuerung/horiz_speed/In1</Name>
 							<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
 							<PlatformDisplayName type="key">Platform</PlatformDisplayName>
 							<Recorded type="key">-1</Recorded>
@@ -877,7 +1106,7 @@ ControlDesk version: 6.0</ItemInfoLog>
 							</Signal>
 						</Variable>
 						<Variable>
-							<Name type="key">Model Root/Störgröße_hub/In1</Name>
+							<Name type="key">Model Root/Ablaufsteuerung/magnet/In1</Name>
 							<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
 							<PlatformDisplayName type="key">Platform</PlatformDisplayName>
 							<Recorded type="key">-1</Recorded>
@@ -886,7 +1115,7 @@ ControlDesk version: 6.0</ItemInfoLog>
 							</Signal>
 						</Variable>
 						<Variable>
-							<Name type="key">Model Root/Störgröße_weg/In1</Name>
+							<Name type="key">Model Root/Ablaufsteuerung/regler_an/In1</Name>
 							<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
 							<PlatformDisplayName type="key">Platform</PlatformDisplayName>
 							<Recorded type="key">-1</Recorded>
@@ -895,7 +1124,7 @@ ControlDesk version: 6.0</ItemInfoLog>
 							</Signal>
 						</Variable>
 						<Variable>
-							<Name type="key">Model Root/Winkel_Position/In1</Name>
+							<Name type="key">Model Root/Ablaufsteuerung/vert_pos/In1</Name>
 							<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
 							<PlatformDisplayName type="key">Platform</PlatformDisplayName>
 							<Recorded type="key">-1</Recorded>
@@ -904,7 +1133,7 @@ ControlDesk version: 6.0</ItemInfoLog>
 							</Signal>
 						</Variable>
 						<Variable>
-							<Name type="key">Model Root/x_hub/In1</Name>
+							<Name type="key">Model Root/Ablaufsteuerung/vert_speed/In1</Name>
 							<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
 							<PlatformDisplayName type="key">Platform</PlatformDisplayName>
 							<Recorded type="key">-1</Recorded>
@@ -913,7 +1142,196 @@ ControlDesk version: 6.0</ItemInfoLog>
 							</Signal>
 						</Variable>
 						<Variable>
-							<Name type="key">Model Root/x_weg/In1</Name>
+							<Name type="key">Model Root/Ablaufsteuerung/x_pos_OK/In1</Name>
+							<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
+							<PlatformDisplayName type="key">Platform</PlatformDisplayName>
+							<Recorded type="key">-1</Recorded>
+							<Signal>
+								<Raster type="key">HostService</Raster>
+							</Signal>
+						</Variable>
+						<Variable>
+							<Name type="key">Model Root/Ablaufsteuerung/x_soll/In1</Name>
+							<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
+							<PlatformDisplayName type="key">Platform</PlatformDisplayName>
+							<Recorded type="key">-1</Recorded>
+							<Signal>
+								<Raster type="key">HostService</Raster>
+							</Signal>
+						</Variable>
+						<Variable>
+							<Name type="key">Model Root/Ablaufsteuerung/x_speed_OK/In1</Name>
+							<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
+							<PlatformDisplayName type="key">Platform</PlatformDisplayName>
+							<Recorded type="key">-1</Recorded>
+							<Signal>
+								<Raster type="key">HostService</Raster>
+							</Signal>
+						</Variable>
+						<Variable>
+							<Name type="key">Model Root/Ablaufsteuerung/y_pos_OK/In1</Name>
+							<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
+							<PlatformDisplayName type="key">Platform</PlatformDisplayName>
+							<Recorded type="key">-1</Recorded>
+							<Signal>
+								<Raster type="key">HostService</Raster>
+							</Signal>
+						</Variable>
+						<Variable>
+							<Name type="key">Model Root/Ablaufsteuerung/y_soll/In1</Name>
+							<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
+							<PlatformDisplayName type="key">Platform</PlatformDisplayName>
+							<Recorded type="key">-1</Recorded>
+							<Signal>
+								<Raster type="key">HostService</Raster>
+							</Signal>
+						</Variable>
+						<Variable>
+							<Name type="key">Model Root/Ablaufsteuerung/y_speed_OK/In1</Name>
+							<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
+							<PlatformDisplayName type="key">Platform</PlatformDisplayName>
+							<Recorded type="key">-1</Recorded>
+							<Signal>
+								<Raster type="key">HostService</Raster>
+							</Signal>
+						</Variable>
+						<Variable>
+							<Name type="key">Model Root/ADC_yUout/In1</Name>
+							<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
+							<PlatformDisplayName type="key">Platform</PlatformDisplayName>
+							<Recorded type="key">-1</Recorded>
+							<Signal>
+								<Raster type="key">HostService</Raster>
+							</Signal>
+						</Variable>
+						<Variable>
+							<Name type="key">Model Root/AWG_Weg/ADC_xUout/In1</Name>
+							<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
+							<PlatformDisplayName type="key">Platform</PlatformDisplayName>
+							<Recorded type="key">-1</Recorded>
+							<Signal>
+								<Raster type="key">HostService</Raster>
+							</Signal>
+						</Variable>
+						<Variable>
+							<Name type="key">Model Root/AWG_Weg/ADC_xUout_offset_abgleich/In1</Name>
+							<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
+							<PlatformDisplayName type="key">Platform</PlatformDisplayName>
+							<Recorded type="key">-1</Recorded>
+							<Signal>
+								<Raster type="key">HostService</Raster>
+							</Signal>
+						</Variable>
+						<Variable>
+							<Name type="key">Model Root/DAC_Motor_Hub/In1</Name>
+							<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
+							<PlatformDisplayName type="key">Platform</PlatformDisplayName>
+							<Recorded type="key">-1</Recorded>
+							<Signal>
+								<Raster type="key">HostService</Raster>
+							</Signal>
+						</Variable>
+						<Variable>
+							<Name type="key">Model Root/DAC_Motor_Weg/In1</Name>
+							<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
+							<PlatformDisplayName type="key">Platform</PlatformDisplayName>
+							<Recorded type="key">-1</Recorded>
+							<Signal>
+								<Raster type="key">HostService</Raster>
+							</Signal>
+						</Variable>
+						<Variable>
+							<Name type="key">Model Root/Position (x-Richtung)/In1</Name>
+							<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
+							<PlatformDisplayName type="key">Platform</PlatformDisplayName>
+							<Recorded type="key">-1</Recorded>
+							<Signal>
+								<Raster type="key">HostService</Raster>
+							</Signal>
+						</Variable>
+						<Variable>
+							<Name type="key">Model Root/Regler_Hub/Ausgangsgröße\n(Spannung)/In1</Name>
+							<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
+							<PlatformDisplayName type="key">Platform</PlatformDisplayName>
+							<Recorded type="key">-1</Recorded>
+							<Signal>
+								<Raster type="key">HostService</Raster>
+							</Signal>
+						</Variable>
+						<Variable>
+							<Name type="key">Model Root/Regler_Hub/geschätzte\nStörgröße/In1</Name>
+							<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
+							<PlatformDisplayName type="key">Platform</PlatformDisplayName>
+							<Recorded type="key">-1</Recorded>
+							<Signal>
+								<Raster type="key">HostService</Raster>
+							</Signal>
+						</Variable>
+						<Variable>
+							<Name type="key">Model Root/Regler_Hub/Regelabweichung/In1</Name>
+							<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
+							<PlatformDisplayName type="key">Platform</PlatformDisplayName>
+							<Recorded type="key">-1</Recorded>
+							<Signal>
+								<Raster type="key">HostService</Raster>
+							</Signal>
+						</Variable>
+						<Variable>
+							<Name type="key">Model Root/Regler_Hub/Stellgröße/In1</Name>
+							<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
+							<PlatformDisplayName type="key">Platform</PlatformDisplayName>
+							<Recorded type="key">-1</Recorded>
+							<Signal>
+								<Raster type="key">HostService</Raster>
+							</Signal>
+						</Variable>
+						<Variable>
+							<Name type="key">Model Root/Regler_Weg/Stellgröße\n ohne Begrenzung/In1</Name>
+							<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
+							<PlatformDisplayName type="key">Platform</PlatformDisplayName>
+							<Recorded type="key">-1</Recorded>
+							<Signal>
+								<Raster type="key">HostService</Raster>
+							</Signal>
+						</Variable>
+						<Variable>
+							<Name type="key">Model Root/Regler_Weg/tatsächliche Stellgröße/In1</Name>
+							<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
+							<PlatformDisplayName type="key">Platform</PlatformDisplayName>
+							<Recorded type="key">-1</Recorded>
+							<Signal>
+								<Raster type="key">HostService</Raster>
+							</Signal>
+						</Variable>
+						<Variable>
+							<Name type="key">Model Root/Regler_Weg/tatsächliche Stellgröße/In2</Name>
+							<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
+							<PlatformDisplayName type="key">Platform</PlatformDisplayName>
+							<Recorded type="key">-1</Recorded>
+							<Signal>
+								<Raster type="key">HostService</Raster>
+							</Signal>
+						</Variable>
+						<Variable>
+							<Name type="key">Model Root/Sensor_Winkel/Winkel_ADC/In1</Name>
+							<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
+							<PlatformDisplayName type="key">Platform</PlatformDisplayName>
+							<Recorded type="key">-1</Recorded>
+							<Signal>
+								<Raster type="key">HostService</Raster>
+							</Signal>
+						</Variable>
+						<Variable>
+							<Name type="key">Model Root/Winkel umgerechnet/In1</Name>
+							<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
+							<PlatformDisplayName type="key">Platform</PlatformDisplayName>
+							<Recorded type="key">-1</Recorded>
+							<Signal>
+								<Raster type="key">HostService</Raster>
+							</Signal>
+						</Variable>
+						<Variable>
+							<Name type="key">Model Root/Winkel_korrigiert/In1</Name>
 							<Platform type="key">58701844-a876-439b-89c4-42ccb865e644</Platform>
 							<PlatformDisplayName type="key">Platform</PlatformDisplayName>
 							<Recorded type="key">-1</Recorded>

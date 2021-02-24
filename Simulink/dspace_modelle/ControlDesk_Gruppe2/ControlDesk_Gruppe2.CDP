@@ -89,7 +89,7 @@
 				<item>
 					<Component type="key">VariablesManagement</Component>
 					<Name type="key">ControlDesk_Gruppe2.vdb</Name>
-					<DisplayName type="key">C:\Users\verladebruecke\Documents\MATLAB\Gruppe2\ControlDesk_Gruppe2\Variable Descriptions\ControlDesk_Gruppe2.vdb</DisplayName>
+					<DisplayName type="key">C:\Users\verladebruecke\Documents\MATLAB\Gruppe2\verladebruecke-regelung\Simulink\dspace_modelle\ControlDesk_Gruppe2\Variable Descriptions\ControlDesk_Gruppe2.vdb</DisplayName>
 					<Path type="key">.\Variable Descriptions</Path>
 					<Flags type="key">276</Flags>
 					<Type type="key">18</Type>
@@ -112,10 +112,10 @@
 					<EntityID type="key">{0FFBC03D-A70A-4627-BCB0-3386A2466DBD}</EntityID>
 					<ItemInfoDate type="key">17.02.2021 13:26:18</ItemInfoDate>
 					<ItemInfoPath type="key">$FPATH$</ItemInfoPath>
+					<ItemInfoDescr type="key"/>
 					<ItemInfoLog type="key">
 Original file added from ..\Teaching_Absolutwertgeber\Teaching_WEG\laufkatze_teach_weg.sdf [2021-02-17 12:25:07 (UTC)]
 </ItemInfoLog>
-					<ItemInfoDescr type="key"/>
 					<ItemInfoAddInfoDb type="key"/>
 					<ItemInfoAuthor type="key">verladebruecke</ItemInfoAuthor>
 					<item>
@@ -175,6 +175,7 @@ Original file added from ..\Teaching_Absolutwertgeber\Teaching_WEG\laufkatze_tea
 					<EntityID type="key">{43A79298-D922-4A92-9962-29E218C4E1B9}</EntityID>
 					<ItemInfoDate type="key">17.02.2021 13:27:32</ItemInfoDate>
 					<ItemInfoPath type="key">$FPATH$</ItemInfoPath>
+					<ItemInfoDescr type="key"/>
 					<ItemInfoLog type="key">
 Original file added from ..\Teaching_Absolutwertgeber\Teaching_HUB\laufkatze_teach_hub.sdf [2021-02-17 12:26:54 (UTC)]
 
@@ -187,7 +188,6 @@ Original file added from ..\Teaching_Absolutwertgeber\Teaching_HUB\laufkatze_tea
 Variable description reloaded on 17.02.2021 14:13:29 (C:\Users\verladebruecke\Documents\MATLAB\Gruppe2\Teaching_Absolutwertgeber\Teaching_HUB\laufkatze_teach_hub.sdf)
 Original file added from ..\Teaching_Absolutwertgeber\Teaching_HUB\laufkatze_teach_hub.sdf [2021-02-17 13:13:01 (UTC)]
 </ItemInfoLog>
-					<ItemInfoDescr type="key"/>
 					<ItemInfoAddInfoDb type="key"/>
 					<ItemInfoAuthor type="key">verladebruecke</ItemInfoAuthor>
 					<item>
@@ -250,6 +250,7 @@ Original file added from ..\Teaching_Absolutwertgeber\Teaching_HUB\laufkatze_tea
 					<EntityID type="key">{DC395D3A-F4B7-43DB-8153-EAA6C9A4256D}</EntityID>
 					<ItemInfoDate type="key">17.02.2021 14:23:21</ItemInfoDate>
 					<ItemInfoPath type="key">$FPATH$</ItemInfoPath>
+					<ItemInfoDescr type="key"/>
 					<ItemInfoLog type="key">
 Original file added from ..\gesamtkonzept_robuster_regler_polbvg.sdf [2021-02-17 13:21:37 (UTC)]
 
@@ -277,7 +278,6 @@ Original file added from ..\gesamtkonzept_robuster_regler_polbvg.sdf [2021-02-17
 Variable description reloaded on 17.02.2021 15:20:34 (C:\Users\verladebruecke\Documents\MATLAB\Gruppe2\gesamtkonzept_robuster_regler_polbvg.sdf)
 Original file added from ..\gesamtkonzept_robuster_regler_polbvg.sdf [2021-02-17 14:19:39 (UTC)]
 </ItemInfoLog>
-					<ItemInfoDescr type="key"/>
 					<ItemInfoAddInfoDb type="key"/>
 					<ItemInfoAuthor type="key">verladebruecke</ItemInfoAuthor>
 					<item>
@@ -334,12 +334,13 @@ Original file added from ..\gesamtkonzept_robuster_regler_polbvg.sdf [2021-02-17
 					<Name type="key">riccatiregler_anlage.sdf</Name>
 					<DisplayName type="key">riccatiregler_anlage.sdf</DisplayName>
 					<Path type="key">.\Variable Descriptions\riccatiregler_anlage.sdf</Path>
-					<Flags type="key">18704</Flags>
+					<Flags type="key">18688</Flags>
 					<Type type="key">7</Type>
 					<UniqueID type="key">458801780</UniqueID>
 					<EntityID type="key">{F2450A50-1FAA-4AAC-A978-8C9D7D48A7F7}</EntityID>
 					<ItemInfoDate type="key">17.02.2021 15:33:36</ItemInfoDate>
 					<ItemInfoPath type="key">$FPATH$</ItemInfoPath>
+					<ItemInfoDescr type="key"/>
 					<ItemInfoLog type="key">
 Original file added from ..\riccatiregler_anlage.sdf [2021-02-17 14:33:07 (UTC)]
 
@@ -355,7 +356,6 @@ Original file added from ..\riccatiregler_anlage.sdf [2021-02-17 15:18:18 (UTC)]
 Variable description reloaded on 17.02.2021 16:20:58 (C:\Users\verladebruecke\Documents\MATLAB\Gruppe2\riccatiregler_anlage.sdf)
 Original file added from ..\riccatiregler_anlage.sdf [2021-02-17 15:20:39 (UTC)]
 </ItemInfoLog>
-					<ItemInfoDescr type="key"/>
 					<ItemInfoAddInfoDb type="key"/>
 					<ItemInfoAuthor type="key">verladebruecke</ItemInfoAuthor>
 					<item>
@@ -409,15 +409,16 @@ Original file added from ..\riccatiregler_anlage.sdf [2021-02-17 15:20:39 (UTC)]
 				</item>
 				<item>
 					<Component type="key">VariablesManagement</Component>
-					<Name type="key">gesamtkonzept_p_pd_regler.sdf</Name>
-					<DisplayName type="key">gesamtkonzept_p_pd_regler.sdf</DisplayName>
-					<Path type="key">.\Variable Descriptions\gesamtkonzept_p_pd_regler.sdf</Path>
-					<Flags type="key">18688</Flags>
+					<Name type="key">gesamtkonzept_p_regler.sdf</Name>
+					<DisplayName type="key">gesamtkonzept_p_regler.sdf</DisplayName>
+					<Path type="key">.\Variable Descriptions\gesamtkonzept_p_regler.sdf</Path>
+					<Flags type="key">18704</Flags>
 					<Type type="key">7</Type>
 					<UniqueID type="key">285304200</UniqueID>
 					<EntityID type="key">{B135022D-7EF5-4CCE-896A-085E979A4019}</EntityID>
 					<ItemInfoDate type="key">17.02.2021 15:53:07</ItemInfoDate>
 					<ItemInfoPath type="key">$FPATH$</ItemInfoPath>
+					<ItemInfoDescr type="key"/>
 					<ItemInfoLog type="key">
 Original file added from ..\gesamtkonzept_p_pd_regler.sdf [2021-02-17 14:51:41 (UTC)]
 
@@ -432,21 +433,113 @@ Original file added from ..\gesamtkonzept_p_pd_regler.sdf [2021-02-17 14:59:24 (
 
 Variable description reloaded on 17.02.2021 16:03:40 (C:\Users\verladebruecke\Documents\MATLAB\Gruppe2\gesamtkonzept_p_pd_regler.sdf)
 Original file added from ..\gesamtkonzept_p_pd_regler.sdf [2021-02-17 15:03:22 (UTC)]
+
+Variable description reloaded on 19.02.2021 13:24:30 (C:\Users\verladebruecke\Documents\MATLAB\Gruppe2\gesamtkonzept_p_pd_regler.sdf)
+Original file added from ..\..\..\..\gesamtkonzept_p_pd_regler.sdf [2021-02-19 12:23:51 (UTC)]
+
+Variable description reloaded on 19.02.2021 13:26:28 (C:\Users\verladebruecke\Documents\MATLAB\Gruppe2\gesamtkonzept_p_pd_regler.sdf)
+Original file added from ..\..\..\..\gesamtkonzept_p_pd_regler.sdf [2021-02-19 12:23:51 (UTC)]
+
+Variable description reloaded on 19.02.2021 13:28:26 (C:\Users\verladebruecke\Documents\MATLAB\Gruppe2\gesamtkonzept_p_pd_regler.sdf)
+Original file added from ..\..\..\..\gesamtkonzept_p_pd_regler.sdf [2021-02-19 12:28:07 (UTC)]
+
+Variable description reloaded on 19.02.2021 13:35:39 (C:\Users\verladebruecke\Documents\MATLAB\Gruppe2\gesamtkonzept_p_pd_regler.sdf)
+Original file added from ..\..\..\..\gesamtkonzept_p_pd_regler.sdf [2021-02-19 12:35:18 (UTC)]
+
+Variable description reloaded on 19.02.2021 13:54:07 (C:\Users\verladebruecke\Documents\MATLAB\Gruppe2\gesamtkonzept_p_regler.sdf)
+Original file added from ..\..\..\..\gesamtkonzept_p_regler.sdf [2021-02-19 12:53:48 (UTC)]
+
+Variable description reloaded on 19.02.2021 14:36:59 (C:\Users\verladebruecke\Documents\MATLAB\Gruppe2\gesamtkonzept_p_regler.sdf)
+Original file added from ..\..\..\..\gesamtkonzept_p_regler.sdf [2021-02-19 13:36:35 (UTC)]
+
+Variable description reloaded on 19.02.2021 14:45:23 (C:\Users\verladebruecke\Documents\MATLAB\Gruppe2\gesamtkonzept_p_regler.sdf)
+Original file added from ..\..\..\..\gesamtkonzept_p_regler.sdf [2021-02-19 13:45:04 (UTC)]
+
+Variable description reloaded on 19.02.2021 14:51:22 (C:\Users\verladebruecke\Documents\MATLAB\Gruppe2\gesamtkonzept_p_regler.sdf)
+Original file added from ..\..\..\..\gesamtkonzept_p_regler.sdf [2021-02-19 13:51:03 (UTC)]
+</ItemInfoLog>
+					<ItemInfoAddInfoDb type="key"/>
+					<ItemInfoAuthor type="key">verladebruecke</ItemInfoAuthor>
+					<item>
+						<Component type="key">VariablesManagement</Component>
+						<Name type="key">gesamtkonzept_p_regler.trc</Name>
+						<DisplayName type="key">gesamtkonzept_p_regler.trc</DisplayName>
+						<Path type="key">.\Variable Descriptions\gesamtkonzept_p_regler.sdf</Path>
+						<Flags type="key">18692</Flags>
+						<ExtendedFlags type="key">1</ExtendedFlags>
+						<Type type="key">4</Type>
+						<UniqueID type="key">991579963</UniqueID>
+						<EntityID type="key">{5CDF6ABE-C850-4D0F-BD02-B3A14D32208A}</EntityID>
+						<ItemInfoDate type="key">19.02.2021 14:51:22</ItemInfoDate>
+						<ItemInfoPath type="key">$FPATH$</ItemInfoPath>
+						<ItemInfoDescr type="key"/>
+						<ItemInfoAddInfoDb type="key"/>
+						<ItemInfoAuthor type="key">verladebruecke</ItemInfoAuthor>
+					</item>
+					<item>
+						<Component type="key">VariablesManagement</Component>
+						<Name type="key">gesamtkonzept_p_regler.map</Name>
+						<DisplayName type="key">gesamtkonzept_p_regler.map</DisplayName>
+						<Path type="key">.\Variable Descriptions\gesamtkonzept_p_regler.sdf</Path>
+						<Flags type="key">18692</Flags>
+						<ExtendedFlags type="key">1</ExtendedFlags>
+						<Type type="key">4</Type>
+						<UniqueID type="key">243812656</UniqueID>
+						<EntityID type="key">{11E867B8-2E2C-4CEF-92FA-BAEF9EE410B0}</EntityID>
+						<ItemInfoDate type="key">19.02.2021 14:51:22</ItemInfoDate>
+						<ItemInfoPath type="key">$FPATH$</ItemInfoPath>
+						<ItemInfoDescr type="key"/>
+						<ItemInfoAddInfoDb type="key"/>
+						<ItemInfoAuthor type="key">verladebruecke</ItemInfoAuthor>
+					</item>
+					<item>
+						<Component type="key">VariablesManagement</Component>
+						<Name type="key">gesamtkonzept_p_regler.rta</Name>
+						<DisplayName type="key">gesamtkonzept_p_regler.rta</DisplayName>
+						<Path type="key">.\Variable Descriptions\gesamtkonzept_p_regler.sdf</Path>
+						<Flags type="key">18692</Flags>
+						<ExtendedFlags type="key">1</ExtendedFlags>
+						<Type type="key">30</Type>
+						<UniqueID type="key">415969810</UniqueID>
+						<EntityID type="key">{6C34DC24-5F0C-4809-99FB-4D80AD2B61EC}</EntityID>
+						<ItemInfoDate type="key">19.02.2021 14:51:22</ItemInfoDate>
+						<ItemInfoPath type="key">$FPATH$</ItemInfoPath>
+						<ItemInfoDescr type="key"/>
+						<ItemInfoAddInfoDb type="key"/>
+						<ItemInfoAuthor type="key">verladebruecke</ItemInfoAuthor>
+					</item>
+				</item>
+				<item>
+					<Component type="key">VariablesManagement</Component>
+					<Name type="key">temp.sdf</Name>
+					<DisplayName type="key">temp.sdf</DisplayName>
+					<Path type="key">.\Variable Descriptions\temp.sdf</Path>
+					<Flags type="key">18688</Flags>
+					<Type type="key">7</Type>
+					<UniqueID type="key">629564001</UniqueID>
+					<EntityID type="key">{77276ACB-D191-4510-83A6-AC9DB5F03B0F}</EntityID>
+					<ItemInfoDate type="key">19.02.2021 14:42:02</ItemInfoDate>
+					<ItemInfoPath type="key">$FPATH$</ItemInfoPath>
+					<ItemInfoLog type="key">
+Original file added from ..\..\..\..\temp.sdf [2021-02-19 13:41:49 (UTC)]
+
+Variable description reloaded on 19.02.2021 14:43:24 (C:\Users\verladebruecke\Documents\MATLAB\Gruppe2\temp.sdf)
+Original file added from ..\..\..\..\temp.sdf [2021-02-19 13:43:05 (UTC)]
 </ItemInfoLog>
 					<ItemInfoDescr type="key"/>
 					<ItemInfoAddInfoDb type="key"/>
 					<ItemInfoAuthor type="key">verladebruecke</ItemInfoAuthor>
 					<item>
 						<Component type="key">VariablesManagement</Component>
-						<Name type="key">gesamtkonzept_p_pd_regler.trc</Name>
-						<DisplayName type="key">gesamtkonzept_p_pd_regler.trc</DisplayName>
-						<Path type="key">.\Variable Descriptions\gesamtkonzept_p_pd_regler.sdf</Path>
+						<Name type="key">temp.trc</Name>
+						<DisplayName type="key">temp.trc</DisplayName>
+						<Path type="key">.\Variable Descriptions\temp.sdf</Path>
 						<Flags type="key">18692</Flags>
 						<ExtendedFlags type="key">1</ExtendedFlags>
 						<Type type="key">4</Type>
-						<UniqueID type="key">658334366</UniqueID>
-						<EntityID type="key">{657B9BDF-D1F4-489A-B7E3-34DD2D58D190}</EntityID>
-						<ItemInfoDate type="key">17.02.2021 16:03:40</ItemInfoDate>
+						<UniqueID type="key">590389486</UniqueID>
+						<EntityID type="key">{DAE035EF-E6A3-454A-8CD5-DD619E49027C}</EntityID>
+						<ItemInfoDate type="key">19.02.2021 14:43:24</ItemInfoDate>
 						<ItemInfoPath type="key">$FPATH$</ItemInfoPath>
 						<ItemInfoDescr type="key"/>
 						<ItemInfoAddInfoDb type="key"/>
@@ -454,15 +547,15 @@ Original file added from ..\gesamtkonzept_p_pd_regler.sdf [2021-02-17 15:03:22 (
 					</item>
 					<item>
 						<Component type="key">VariablesManagement</Component>
-						<Name type="key">gesamtkonzept_p_pd_regler.map</Name>
-						<DisplayName type="key">gesamtkonzept_p_pd_regler.map</DisplayName>
-						<Path type="key">.\Variable Descriptions\gesamtkonzept_p_pd_regler.sdf</Path>
+						<Name type="key">temp.map</Name>
+						<DisplayName type="key">temp.map</DisplayName>
+						<Path type="key">.\Variable Descriptions\temp.sdf</Path>
 						<Flags type="key">18692</Flags>
 						<ExtendedFlags type="key">1</ExtendedFlags>
 						<Type type="key">4</Type>
-						<UniqueID type="key">963030322</UniqueID>
-						<EntityID type="key">{2CDE9BAA-1BAC-4A38-8DDE-A453F89689B9}</EntityID>
-						<ItemInfoDate type="key">17.02.2021 16:03:40</ItemInfoDate>
+						<UniqueID type="key">146136878</UniqueID>
+						<EntityID type="key">{2680B057-C465-432F-B408-A4BAF8352A6B}</EntityID>
+						<ItemInfoDate type="key">19.02.2021 14:43:24</ItemInfoDate>
 						<ItemInfoPath type="key">$FPATH$</ItemInfoPath>
 						<ItemInfoDescr type="key"/>
 						<ItemInfoAddInfoDb type="key"/>
@@ -470,15 +563,15 @@ Original file added from ..\gesamtkonzept_p_pd_regler.sdf [2021-02-17 15:03:22 (
 					</item>
 					<item>
 						<Component type="key">VariablesManagement</Component>
-						<Name type="key">gesamtkonzept_p_pd_regler.rta</Name>
-						<DisplayName type="key">gesamtkonzept_p_pd_regler.rta</DisplayName>
-						<Path type="key">.\Variable Descriptions\gesamtkonzept_p_pd_regler.sdf</Path>
+						<Name type="key">temp.rta</Name>
+						<DisplayName type="key">temp.rta</DisplayName>
+						<Path type="key">.\Variable Descriptions\temp.sdf</Path>
 						<Flags type="key">18692</Flags>
 						<ExtendedFlags type="key">1</ExtendedFlags>
 						<Type type="key">30</Type>
-						<UniqueID type="key">41972620</UniqueID>
-						<EntityID type="key">{9CE17687-E470-4DC9-B8C2-5782DA306720}</EntityID>
-						<ItemInfoDate type="key">17.02.2021 16:03:40</ItemInfoDate>
+						<UniqueID type="key">472229397</UniqueID>
+						<EntityID type="key">{442DF18D-D028-45A5-B1E8-2DD37170C070}</EntityID>
+						<ItemInfoDate type="key">19.02.2021 14:43:24</ItemInfoDate>
 						<ItemInfoPath type="key">$FPATH$</ItemInfoPath>
 						<ItemInfoDescr type="key"/>
 						<ItemInfoAddInfoDb type="key"/>
@@ -660,7 +753,7 @@ Original file added from ..\gesamtkonzept_p_pd_regler.sdf [2021-02-17 15:03:22 (
 			<Id3 type="key">12</Id3>
 			<File4 type="key">Experiment_Gruppe2/ReglerRiccati</File4>
 			<Id4 type="key">11</Id4>
-			<File5 type="key">Experiment_Gruppe2/ReglerPolbvg</File5>
+			<File5 type="key">Experiment_Gruppe2/P_Regler_und_Polbvg</File5>
 			<Id5 type="key">10</Id5>
 			<File6 type="key">Experiment_Gruppe2/AutomatOK</File6>
 			<Id6 type="key">9</Id6>
