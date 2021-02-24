@@ -13,7 +13,7 @@ param.ue_K = 6;
 param.ue_G = 3;
 param.d = 0.02;  % Daempfung
 
-param.box_sequence = [4, 1, 2, 5, 3];
+param.box_sequence = [1,4,5,3,2];
 
 param.g = 9.81;
 
@@ -40,7 +40,7 @@ param.init_x_pos = 127;  %cm, for start and finish positioning
 param.init_y_pos = 20;  %cm
 
 % Gripper measurements
-param.min_gripper_to_ground = 7;  %cm  
+param.min_gripper_to_ground = 5;  %cm  
 param.gripper_max_length = 163 - 23 - param.min_gripper_to_ground;  %cm
 
 param.k_AWG_K = 1 / (param.total_rail_length / 100); %V/m
