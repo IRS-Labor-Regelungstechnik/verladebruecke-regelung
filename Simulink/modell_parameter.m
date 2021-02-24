@@ -1,5 +1,5 @@
 %% Parameters
-param.L_0 = 0.5;  % Range: 0.23m - 1.605m
+param.L_0 = 0.1;  % Range: 0.23m - 1.605m
 param.init_x1 = 0;
 param.phi_0 = 0;
 param.T_K = 0.03032;
