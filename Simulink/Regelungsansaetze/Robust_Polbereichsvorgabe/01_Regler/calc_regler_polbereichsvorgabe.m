@@ -7,7 +7,7 @@
 %% Parameter
 
 % Für die Simulation und Berechnung des Kalman Filters verwendete Parameter:
-system.L = 0.5;
+system.L = 0.5; % nicht für nachfolgende Optimierung relevant
 % PT1 Glied
 system.T_K = 0.03032;
 system.K_K = 1;
@@ -20,7 +20,7 @@ system.g = 9.81; % Erdbeschleunigung
 theta_lb = 0.01; % L upper bound
 theta_ub = 1.65; % L lower bound
 
-system.theta = theta_lb:1.64:theta_ub;
+system.theta = theta_lb:0.01:theta_ub;
 
 %% Polbereich
 
@@ -28,7 +28,7 @@ system.theta = theta_lb:1.64:theta_ub;
 % + funktioniert für kleine / große Greiferlänge
 % - schwingt ohne Pahsenkompensation stark in Position
 a_P = 0.1;
-b_P = 0.6;
+b_P = 1;
 R_P = 43;
 
 P = 1000;
