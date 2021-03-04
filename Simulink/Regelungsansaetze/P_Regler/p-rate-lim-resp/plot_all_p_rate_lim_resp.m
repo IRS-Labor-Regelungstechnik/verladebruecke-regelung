@@ -13,15 +13,35 @@ for file = {results.name}
         % Data(:,1) is step response
         % Data(:,2) is step
         plot(data.Time, data.Data(:,2), data.Time, data.Data(:,1));
-        legend('Sprungantwort', 'Einheitssprung')
-        saveas(gcf,strrep(file{1}, '.mat', '.eps'),'epsc')
+        leg = legend('Einheitssprung','Sprungantwort');
+        
+        leg.Location = 'southeast';
+        % leg.Interpreter = 'latex';
+        leg.FontSize = 12;
+
+        xlab = xlabel('t[s]');
+        xlab.Interpreter = 'latex';
+        % ylab = ylabel('$$y_1, \dot{y}_1$$ [V]');
+        % ylab.Interpreter = 'latex';
+        
+        
     elseif ~isempty(regexp(file{1}, 'DIFF', 'ONCE'))
         data = load(file{1});
         data = data.ans;
         figure(1);
 
         plot(data.Time, data.Data(:,2), data.Time, data.Data(:,1));
-        legend('Stellgroesse vor Rate Limiter', 'Stellgroesse nach Rate Limiter')
-        saveas(gcf,strrep(file{1}, '.mat', '.eps'),'epsc')
+        leg = legend('Stellgroesse vor Rate Limiter', 'Stellgroesse nach Rate Limiter');
+        
+        leg.Location = 'northeast';
+        % leg.Interpreter = 'latex';
+        leg.FontSize = 12;
+
+        xlab = xlabel('t[s]');
+        xlab.Interpreter = 'latex';
+        % ylab = ylabel('$$y_1, \dot{y}_1$$ [V]');
+        % ylab.Interpreter = 'latex';
+        
     end
+    saveas(gcf,strrep(file{1}, '.mat', '.eps'),'epsc')
 end
