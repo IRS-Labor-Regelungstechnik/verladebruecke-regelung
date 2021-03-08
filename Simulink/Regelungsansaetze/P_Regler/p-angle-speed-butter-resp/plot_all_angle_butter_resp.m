@@ -5,6 +5,9 @@ if isempty(regexp(pwd, strcat(MAT_DIR,'$'), 'ONCE'))
 end
 results = dir('*.mat');
 
+LEG_FONT_SIZE = 12;
+LABEL_FONT_SIZE = 14;
+
 for file = {results.name}
     data = load(file{1});
     data = data.ans;
@@ -12,13 +15,15 @@ for file = {results.name}
 
     plot(data.Time, data.Data(:,2), data.Time, data.Data(:,1));
     leg = legend('Winkelausschlag $$y_3$$', 'Winkelgeschwindigkeit $$\dot{y}_3$$');
-    leg.Interpreter = 'latex';
-
     xlab = xlabel('t[s]');
-    xlab.Interpreter = 'latex';
     ylab = ylabel('$$y_3, \dot{y}_3$$ [deg]');
-    ylab.Interpreter = 'latex';
 
+    leg.Interpreter = 'latex';
+    leg.FontSize = LEG_FONT_SIZE;
+    xlab.Interpreter = 'latex';
+    xlab.FontSize = LABEL_FONT_SIZE;
+    ylab.Interpreter = 'latex';
+    ylab.FontSize = LABEL_FONT_SIZE;
     
     saveas(gcf,strrep(file{1}, '.mat', '.eps'),'epsc')
 end
