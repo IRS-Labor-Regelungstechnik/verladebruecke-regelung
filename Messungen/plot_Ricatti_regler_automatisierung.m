@@ -1,27 +1,30 @@
-data = load('P-Regler-mit-Butter.mat');
-data = data.P_Regler_mit_Butter;
+% Die Messungen werden von Git ignoriert, da die Dateien einfach zu gro? sind. 
+% Die Messung findet man unter: https://cloud.andrewdelay.com/index.php/s/FsTtRdeLLHWsP2p
+% Im Ordner LR_dspace\ControlDesk_Gruppe2\Experiment_Gruppe2\Measurement Data
+data = load('RiccatiRegler.mat');
+data = data.RiccatiRegler;
 
 LEG_FONT_SIZE = 10;
 LABEL_FONT_SIZE = 12;
 
 t = data.X.Data;
 
-relevant_data = ...
-    [ ...
-    4, ... % angle 
-    6, ... % angle_speed
-    8, ... % horiz_pos
-    9, ... % horiz_speed
-    10, ... % magnet
-    11, ... % regler an
-    12, ... % vert_pos
-    13, ... % vert_speed
-    15, ... % x_soll
-    18, ... % y_soll
-    ];
+% Indizes von data.Y
+% 1: horiz_pos 
+% 2: ???
+% 3: ???
+% 4: winkel_speed
+% 5: winkel
+% 6: hub_speed echt oder gesch?tzt?
+% 7: hub_speed echt oder gesch?tzt?
+% 8: weg_speed echt oder gesch?tzt?
+% 9: weg_speed echt oder gesch?tzt?
+% 10:hub_pos
+% 11:horiz_pos in Metern
 
-ylab = ['\vartheta', '\dot \vartheta', '\dot y_1', 'Magnet', '\dot y_2', 'Sollwert y_1', 'Sollwert y_2'];
-legends = {'Winkelausschlag', 'Winkelgeschw', 'Laufkgeschw', 'Magnet', 'Hubmotorgeschw', 'Sollwert y_1', 'Sollwert y_2'};
+
+plot(t, data.Y(1).Data)
+error('Ende Index Test')
 
 %% X Soll und Pos
 figure(1)
