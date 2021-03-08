@@ -19,8 +19,8 @@ sys = systemhub;
 %% berechne Kalman-Filter
 
 % Kovarianz
-matR_hub = 1000; % Kovarianzmatrix Ausgangsrauschen
-matQ_hub = 0.1; % Kovarianzmatrix Systemrauschen
+matR_hub = 10000; % Kovarianzmatrix Ausgangsrauschen
+matQ_hub = 1; % Kovarianzmatrix Systemrauschen
 
 % Systemrauschen
 % Annahme: wird bei der Übertragung der Solldrehzahl von der dSpace Box zum
