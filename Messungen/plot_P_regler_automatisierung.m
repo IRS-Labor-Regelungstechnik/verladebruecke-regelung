@@ -61,7 +61,7 @@ lab = xlabel('$t$ [s]');
 lab.FontSize = LABEL_FONT_SIZE;
 lab.Interpreter = 'latex';
 
-lab = ylabel('[m]');
+lab = ylabel('Laufkatzenposition [m]');
 lab.Interpreter = 'latex';
 lab.FontSize = LABEL_FONT_SIZE;
 
@@ -101,7 +101,7 @@ lab = xlabel('$t$ [s]');
 lab.Interpreter = 'latex';
 lab.FontSize = LABEL_FONT_SIZE;
 
-lab = ylabel('[m]');
+lab = ylabel('Greiferl{\"a}nge [m]');
 lab.Interpreter = 'latex';
 lab.FontSize = LABEL_FONT_SIZE;
 
